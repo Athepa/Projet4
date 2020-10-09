@@ -5,31 +5,25 @@ declare(strict_types=1);
 namespace  App\Service;
 
 use App\Controller\Frontoffice\PostController;
+use App\Model\CommentManager;
 use App\Model\PostManager;
-use App\View\View;
 use App\Service\Database;
-
+use App\View\View;
 
 // cette classe router est un exemple très basic. Cette façon de faire n'est pas optimale
 class Router
 {
-    private PostManager $postManager;
+    private Database $database;
     private View $view;
-    private PostController $postController;
-    private Database $dataBase;
     private array $get;
 
     public function __construct()
     {
         // dépendance
-        $this->dataBase = new Database();
-        $this->postManager = new PostManager($this->dataBase);
+        $this->database = new Database();
         $this->view = new View();
 
-        // injection des dépendances
-        $this->postController = new PostController($this->postManager, $this->view);
-
-        // En attendent de mettre ne place la class App\Service\Http\Request
+        // En attendent de mettre en place la class App\Service\Http\Request
         $this->get = $_GET;
     }
 
@@ -44,11 +38,21 @@ class Router
 
         //Déterminer sur quelle route nous sommes // Attention algorithme naïf
         if ($action === 'posts') {
+            //injection des dépendances et instanciation du controller
+        $commentManager = new CommentManager($this->database);
+            $postManager = new PostManager($this->database);
+            $controller = new PostController($postManager, $commentManager, $this->view);
+    
             // route http://localhost:8000/?action=posts
-            $this->postController->displayAllAction();
+            $controller->displayAllAction();
         } elseif ($action === 'post' && isset($this->get['id'])) {
+            //injection des dépendances et instanciation du controller
+            $commentManager = new CommentManager($this->database);
+            $postManager = new PostManager($this->database);
+            $controller = new PostController($postManager, $commentManager, $this->view);
+            
             // route http://localhost:8000/?action=post&id=5
-            $this->postController->displayOneAction((int)$this->get['id']);
+            $controller->displayOneAction((int)$this->get['id']);
         } else {
             echo "Error 404 - cette page n'existe pas<br><a href=http://localhost:8000/?action=posts>Aller Ici</a>";
         }

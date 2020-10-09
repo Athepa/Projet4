@@ -1,9 +1,8 @@
 <h2>Tous les posts</h2>
 <hr>
 <?php foreach($data['allposts'] as $post): ?>
-<p>id = <?=$post['id']?></p>
-<p>title = <?=$post['title']?></p>
-<p>text = <?=$post['text']?></p>
-<a href="index.php?action=post&id=<?=$post['id']?>">Lire le post</a>
+<p><?=$post['titlePost'].' '.'publié le'.' '. $post['fr_creationDate']?></p>
+<p><?=$post['textPost']?></p>
+<a href="index.php?action=post&idPost=<?=$post['idPost']?>">Lire le post</a>
 <hr>
 <?php endforeach; ?>
