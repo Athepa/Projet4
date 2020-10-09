@@ -10,16 +10,11 @@ class Database
 
     public function __construct()
     {
-        $this->db = new \PDO('mysql:host=localhost;dbname=blogdatabase;charset=utf8','root','');
-    } 
+        $this->db = new \PDO('mysql:host=localhost;dbname=blogdatabase;charset=utf8', 'root', '');
+    }
 
-    public function connectDB(): \PDO 
-    {        
+    public function connectDB(): \PDO
+    {
         return $this->db;
     }
-    
-   
 }
-    
-    
-

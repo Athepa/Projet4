@@ -10,5 +10,4 @@ use App\View\View;
 
 class CommentController
 {
-    
 }

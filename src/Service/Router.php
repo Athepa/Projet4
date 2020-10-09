@@ -39,7 +39,7 @@ class Router
         //Déterminer sur quelle route nous sommes // Attention algorithme naïf
         if ($action === 'posts') {
             //injection des dépendances et instanciation du controller
-        $commentManager = new CommentManager($this->database);
+            $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
             $controller = new PostController($postManager, $commentManager, $this->view);
     

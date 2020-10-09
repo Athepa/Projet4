@@ -13,7 +13,7 @@ class CommentManager
 
     public function __construct(Database $database)
     {
-        $this->database = $database;        
+        $this->database = $database;
     }
 
     public function showAllFromPost(int $id): ?array

@@ -19,11 +19,11 @@ class PostManager
     {
         $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost 
         FROM posts 
-        ORDER BY fr_creationDate DESC LIMIT 0,10'); 
+        ORDER BY fr_creationDate DESC LIMIT 0,10');
         
         $data = $dbrequest->fetchAll();
-        return $data;          
-    }   
+        return $data;
+    }
 
     
 
