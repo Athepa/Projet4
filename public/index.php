@@ -11,3 +11,4 @@ $whoops->register();
 
 $router = new Router();
 $router->run();
+

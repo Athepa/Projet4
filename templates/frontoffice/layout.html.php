@@ -2,22 +2,17 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="css/frontend-style.css" />
         <title>Blog</title>
     </head>
 
     <body>
-        <!-- Navigation -->
-        <nav>
-            <h2>Menu</h2>
-            <a href="index.php?action=posts">Liste des posts</a><br>
-            <a href="index.php?action=post&id=500">Un post qui n'existe pas</a><br>
-            <a href="index.php?action=unknow">Une route qui n'existe pas</a><br>
-        </nav>
-
-        <!-- Page Header -->
-        <header>
-            <h1>Blog</h1>
-        </header>
+        <nav>            
+            <a href="index.php">ACCUEIL</a>
+            <a href="index.php?action=posts">EPISODES</a>            
+            <a href="index.php?action=unknow">ME CONTACTER</a>
+        </nav>        
 
         <main>
             <?=$content?>

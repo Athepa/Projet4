@@ -24,7 +24,7 @@ class CommentManager
         ');
 
         $dbrequest->execute(['id'=>$id]);
-        $data = $dbrequest->fetch();
+        $data = $dbrequest->fetchAll();
         return $data;
     }
 }

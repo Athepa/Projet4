@@ -10,4 +10,7 @@ use App\View\View;
 
 class CommentController
 {
+    private PostManager $postManager;
+    private CommentManager $commentManager;
+    private View $view;
 }
