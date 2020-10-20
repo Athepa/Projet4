@@ -46,7 +46,7 @@ class Router
             $controller = new HomeController($this->view);
             //http://localhost:8000/index.php
             $controller->displayHome();
-        } elseif ($action = 'saveComment' && isset($this->get['idPost']);
+        } elseif ($action === 'saveComment' && isset($this->get['idPost']){
             $controller = new PostController ($postManager, $commentManager, $this->view);
             $controller->saveComment($this->post,(int)$this->get['idPost']);
         } else {
