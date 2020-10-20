@@ -27,4 +27,9 @@ class CommentManager
         $data = $dbrequest->fetchAll();
         return $data;
     }
+
+    public function saveComment(int $id): ?array
+    {
+        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO comments (idPost, pseudoUser, creationDate, commentText) VALUES (:idPost, :pseudoUser, NOW(), :commentText');
+    }
 }

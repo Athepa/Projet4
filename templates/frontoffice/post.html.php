@@ -10,6 +10,5 @@
             <input id="pseudo" type="text" name="pseudo" placeholder="Votre pseudonyme"/>
             <textarea id="comment" type="text" name="comment" placeholder="Votre commentaire"></textarea>
             <input type="submit" id="send"/>
-
         </form>
     </article>
