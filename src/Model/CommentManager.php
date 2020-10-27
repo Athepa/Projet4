@@ -35,7 +35,6 @@ class CommentManager
         $dbrequest = $this->database->connectDB()->prepare("INSERT INTO comments (idPost, pseudoUser, creationDate, commentText) 
         VALUES (':idPost', ':pseudoUser', NOW(), ':commentText')
         ");
-        $this->database->connectDB()->errorInfo();
         return $dbrequest->execute([
             'idPost' => $idPost,
             'pseudoUser'=> $data['pseudo'],
