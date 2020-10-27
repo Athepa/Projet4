@@ -17,6 +17,7 @@ class Router
     private Database $database;
     private View $view;
     private array $get;
+    private array $post;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class Router
         $this->view = new View();
 
         $this->get = $_GET;//While waiting Request Class
+        $this->post = $_POST;//While waiting Request Class
     }
 
     public function run(): void
@@ -46,9 +48,11 @@ class Router
             $controller = new HomeController($this->view);
             //http://localhost:8000/index.php
             $controller->displayHome();
-        } elseif ($action === 'saveComment' && isset($this->get['idPost']){
-            $controller = new PostController ($postManager, $commentManager, $this->view);
-            $controller->saveComment($this->post,(int)$this->get['idPost']);
+        } elseif ($action === 'saveComment' && isset($this->get['idPost'])){
+            $commentManager = new CommentManager($this->database);
+            $controller = new CommentController ($commentManager);
+            /*index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>*/
+           $controller->saveCommentAction((int)$this->get['idPost'],$this->post);
         } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/?action=posts>Revenir à la liste des articles</a>";

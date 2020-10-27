@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 09 oct. 2020 à 11:46
+-- Généré le : mar. 27 oct. 2020 à 15:57
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `commentText` text NOT NULL,
   PRIMARY KEY (`idComment`),
   KEY `idPost` (`idPost`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `comments`
@@ -69,7 +69,8 @@ INSERT INTO `comments` (`idComment`, `idPost`, `pseudoUser`, `creationDate`, `co
 (1, 1, 'Toto', '2020-08-28 15:47:22', 'C\'est très intéressant comme concept!!!'),
 (2, 1, 'Caliméro', '2020-10-02 13:41:23', 'C\'est pas juste!'),
 (3, 2, 'Marty', '2020-10-09 11:18:59', 'Super génial!'),
-(4, 2, 'Caton', '2020-10-09 11:21:39', 'Carthago delenda est!');
+(4, 2, 'Caton', '2020-10-09 11:21:39', 'Carthago delenda est!'),
+(5, 2, 'Marcel', '2020-10-27 16:44:03', 'Blalalalala');
 
 -- --------------------------------------------------------
 

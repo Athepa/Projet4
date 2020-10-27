@@ -9,13 +9,13 @@ use App\Service\Database;
 class CommentManager
 {
     private Database $database;
-    private array $post;
+    
     
 
     public function __construct(Database $database)
     {
         $this->database = $database;
-        $this->post = $_POST;
+        
     }
 
     public function showAllFromPost(int $id): ?array
@@ -30,18 +30,17 @@ class CommentManager
         return $data;
     }
 
-    public function addComment(int $id): ?array
+    public function addComment(int $idPost, array $data): bool
     {
-        $idComment = $this->post['id-comment'];
-        $pseudoReader = $this->post['pseudo'];
-        $commentReader = $this->post['comment'];
-
-        $dbrequest = $this->database->connectDB()->prepare("INSERT INTO comments (idComment, idPost, pseudoUser, creationDate, commentText) 
-        VALUES ('$idComment' 'idPost', '$pseudoReader', NOW(), '$commentReader')
-        WHERE idPost = :id
+        $dbrequest = $this->database->connectDB()->prepare("INSERT INTO comments (idPost, pseudoUser, creationDate, commentText) 
+        VALUES (':idPost', ':pseudoUser', NOW(), ':commentText')
         ");
-        $dbrequest->execute(['id'=> $id]);
-        $data= $request;
-        return $data;
+        $this->database->connectDB()->errorInfo();
+        return $dbrequest->execute([
+            'idPost' => $idPost,
+            'pseudoUser'=> $data['pseudo'],
+            'commentText' => $data['comment']
+        ]);   
+        
     }
 }

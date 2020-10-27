@@ -1,4 +1,43 @@
+/*body{
+    background-image: url('../images/Foret-enneigée.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}*/
 nav, header, main, footer  {
-    width: 80%;
+    width: 70%;
     margin: auto;
+}
+
+nav{
+   /* position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	z-index: 200;*/
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 5em;
+}
+.menu-navigation a{
+    padding:30px 15px ;    
+}
+
+p{
+    text-align: justify;
+}
+
+.report{
+    text-align: center;
+    border: 1px grey solid;
+    background-color: grey;
+    width:15%;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
