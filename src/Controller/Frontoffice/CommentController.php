@@ -13,10 +13,8 @@ class CommentController
     
 
     public function __construct(CommentManager $commentManager) 
-    {
-       
-        $this->commentManager = $commentManager;
-        
+    {       
+        $this->commentManager = $commentManager;        
     }
 
     public function saveCommentAction(int $idPost, array $data): void
@@ -25,6 +23,5 @@ class CommentController
         $this->commentManager->addComment($idPost, $data);
         header('location: index.php?action=post&idPost='.$idPost);
         exit();
-    }
-       
+    }       
 }

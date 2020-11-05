@@ -29,6 +29,9 @@
                     <p><a href="index.php?action=posts">Episodes</a></p>
                     <p><a href="index.php?action=unknow">Contact</a></p>
                 </div>
+                <div class="connection-auteur">
+                    <a href="index.php?action=authorConnect&idAuthor=<?=$data['idAuthor']?>">Je suis Jean Forteroche</a>
+                </div>
             </footer>        
         </body>   
 </html>
