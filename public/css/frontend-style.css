@@ -1,27 +1,102 @@
-/*body{
-    background-image: url('../images/Foret-enneigée.jpg');
-    background-repeat: no-repeat;
+@font-face{
+	font-family: 'exo';
+	src:url('..//fonts/Exo2-Regular.otf') format('opentype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face{
+	font-family: 'exobold';
+	src:url('..//fonts/Exo2-Bold.otf') format('opentype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face{
+	font-family: 'exolight';
+	src:url('..//fonts/Exo2-ExtraLightItalic.otf') format('opentype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+body{
+    margin: 0;
+    background-image: url('..//images/snowedforest.jpg');
     background-size: cover;
-}*/
-nav, header, main, footer  {
-    width: 70%;
-    margin: auto;
+}
+header{
+    margin-top: 13rem;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+h1{
+    font-family:'exobold', sans-serif ;
+    font-size: 3rem;
+    color: whitesmoke;
+}
+main{
+    width: 60%;
+    margin: auto;    
+    
 }
 
 nav{
-   /* position: fixed;
+   position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-	background-color: white;
-	z-index: 200;*/
+    z-index: 200;
+    background-color: rgb(205,92,92);
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	height: 5em;
+    height: 3em;
+    font-size: 1.5rem;
 }
+
+nav a, footer a{
+    text-decoration: none; 
+    color: whitesmoke;
+    font-family: 'exo', sans-serif;
+}
+
+
 .menu-navigation a{
-    padding:30px 15px ;    
+    padding:30px 15px ;   
+}
+
+
+.intro{
+    display: flex;
+    justify-content: space-around;
+    background-color:rgba(240,128,128,0.8);
+    padding: 3rem;
+    margin-bottom: 3rem; 
+}
+
+.intro article{
+    width: 60%;
+    color: whitesmoke;
+    font-family:'exo' ;
+}
+
+.intro article h3{
+    font-size: 2rem;
+}
+
+.intro article{
+    font-size: 1.25rem;
+}
+.img-presentation img{
+   max-width: 70%;
+   height: auto;
+   padding-top:30%;
+}
+
+.post-text-sample{
+    height: 5rem;
+    overflow: hidden;
 }
 
 p{
@@ -36,8 +111,14 @@ p{
 }
 
 footer{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background-color: rgb(205,92,92);
+    width: 100%;
+    color: whitesmoke;
+}
+
+.bottom-page{
+    padding-left:20%;
+    padding-right: 20%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }

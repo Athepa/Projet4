@@ -32,9 +32,9 @@ class CommentManager
 
     public function addComment(int $idPost, array $data): bool
     {
-        $dbrequest = $this->database->connectDB()->prepare("INSERT INTO comments (idPost, pseudoUser, creationDate, commentText) 
-        VALUES (':idPost', ':pseudoUser', NOW(), ':commentText')
-        ");
+        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO comments (idPost, pseudoUser, creationDate, commentText) 
+        VALUES (:idPost, :pseudoUser, NOW(), :commentText)
+        ');
         return $dbrequest->execute([
             'idPost' => $idPost,
             'pseudoUser'=> $data['pseudo'],
