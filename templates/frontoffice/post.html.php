@@ -1,4 +1,4 @@
-    <article>
+    <article class="single-episode">
         <h2><?=$data['onepost']['titlePost']?></h2>
         <p><?=$data['onepost']['textPost']?></p>
         <hr>
@@ -11,7 +11,7 @@
         <?php foreach($data['comments'] as $comments): ?>
         <p><?=$comments['pseudoUser'].' '.'publié le'.' '. $comments['fr_creationDate']?></p>
         <p><?=$comments['commentText']?></p>
-        <p class="report">Signaler ce commentaire</p>
+        <p class="report"><a href="index.php?action=reportComment&idComment=<?=$comments['idComment']?>"> Signaler ce commentaire</a></p>
         <hr>
         <?php endforeach; ?>
         

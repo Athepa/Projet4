@@ -55,6 +55,10 @@ nav{
     font-size: 1.5rem;
 }
 
+nav a :hover{
+    color: rosybrown;
+}
+
 nav a, footer a{
     text-decoration: none; 
     color: whitesmoke;
@@ -95,9 +99,70 @@ nav a, footer a{
 }
 
 .post-text-sample{
-    height: 5rem;
+    height: 5.5rem;
     overflow: hidden;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    font-family: 'exo', sans-serif;
 }
+
+.post-link{
+    display: block;
+    text-decoration: none;
+    border: 1px rgb(240,128,128) solid;
+    background-color: whitesmoke;
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color:rgb(240,128,128);
+    font-family: 'exo', sans-serif;
+}
+
+.post-link :hover {
+    color: whitesmoke;
+    background-color: rgb(240,128,128);
+}
+
+.posts-list{
+    margin-top: 10rem;
+    padding: 1rem; 
+    background-color:rgba(240,128,128,0.8) ; 
+    margin-bottom: 3rem;  
+}
+
+.posts-list h2{
+    font-family: 'exobold', sans-serif;
+    color: whitesmoke;
+    font-size: 3rem;
+    text-align: center;    
+}
+
+.episode{
+    color: whitesmoke;
+    font-family:'exo', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+    border-top: 2px whitesmoke solid;
+    border-bottom: 2px whitesmoke solid;
+}
+
+.posts-list h3{
+    font-family: 'exobold', sans-serif;
+    font-size: 2rem;
+    color: whitesmoke;
+    text-decoration: underline;
+    margin-bottom: 0;
+}
+
+.publication-date{
+    font-size: 1rem;
+    font-family: 'exolight', sans-serif;
+    color: whitesmoke;
+    margin-top: 0;
+}
+
 
 p{
     text-align: justify;

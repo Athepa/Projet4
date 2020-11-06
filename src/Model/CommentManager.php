@@ -42,4 +42,13 @@ class CommentManager
         ]);   
         
     }
+
+    public function reportCommentUpdate(int $idComment, array $data) : ?array
+    {
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE comments SET report = 1
+        WHERE idComment = :idComment
+        ');
+        $dbrequest->execute(['idcomment'=>$idComment]);
+        return $data['report'];
+    }
 }

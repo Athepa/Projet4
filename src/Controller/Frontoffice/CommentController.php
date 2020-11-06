@@ -23,5 +23,12 @@ class CommentController
         $this->commentManager->addComment($idPost, $data);
         header('location: index.php?action=post&idPost='.$idPost);
         exit();
-    }       
+    }  
+    
+    public function reportCommentAction(int $idComment, array $data): void
+    {
+        $this->commentManager->reportCommentUpdate($idComment, $data);
+        header('location: index.php?action=post&idPost='.$idPost);
+        exit();
+    }
 }
