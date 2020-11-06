@@ -63,7 +63,7 @@ class Router
             $commentManager = new CommentManager($this->database);
             $controller = new CommentController($commentManager);
             //http://index.php?action=reportComment&idComment=x
-            $controller->reportCommentAction((int)$this->get['idComment'],$this->post);
+            $controller->reportCommentAction((int)$this->get['isComment'],$this->post);
         } 
         /*elseif ($action === 'authorConnect' && isset($this->get['idAuthor'])){
             $authorConnectManager = new AuthorConnectManager($this->database);
