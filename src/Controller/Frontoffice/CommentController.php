@@ -26,8 +26,8 @@ class CommentController
     
     public function reportCommentAction(int $idComment, array $data): void
     {
-        $this->commentManager->reportCommentUpdate($idComment, $data);
-        header('location: index.php?action=saveComment&idPost='.$data['onepost']['idPost']);
+        $this->commentManager->reportComment($idComment, $data);
+        header('location: index.php?action=saveComment&idComment='.$idComment);
         exit();
     }
 }

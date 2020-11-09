@@ -9,9 +9,19 @@
         </form>
         <hr>
         <?php foreach($data['comments'] as $comments): ?>
+        <?=$reportButton;
+        $reportValue = $comments['report'];
+        if(isset($reportValue) && $reportValue = 0){
+            $reportButton = 'Signaler ce commentaire';            
+        } elseif(isset($reportValue) && $reportValue = 1){
+            $reportButton = 'Ce commentaire a été signalé';
+        } elseif (isset($reportValue) && $reportValue = 2){
+            $reportButton = 'Ce commentaire a été validé';
+        }
+        ?>
         <p><?=$comments['pseudoUser'].' '.'publié le'.' '. $comments['fr_creationDate']?></p>
-        <p><?=$comments['commentText']?></p>
-        <p class="report"><a href="index.php?action=reportComment&idComment=<?=$comments['idComment']?>"> Signaler ce commentaire</a></p>
+        <p><?=$comments['commentText']?></p>        
+        <p class="report"><a href="index.php?action=reportComment&idComment=<?=$comments['idComment']?>"> <?=$reportButton?></a></p>
         <hr>
         <?php endforeach; ?>
         
