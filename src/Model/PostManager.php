@@ -38,4 +38,17 @@ class PostManager
         $data = $dbrequest->fetch();
         return $data;
     }
+
+
+    public function addPost(int $idAuthor, array $data): bool
+    {
+        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO post (idPost, IdAuthor, tilePost, creationDate, textPost) 
+        VALUES (:idAuthor, :titlePost, NOW(), :textPost)
+        ');
+        return $dbrequest->execute([
+            'idAuthor' => $idAuthor,
+            'titlePost'=> $data['title-post'],
+            'textPost' => $data['text-post']
+            ]);
+    }
 }

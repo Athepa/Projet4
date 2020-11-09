@@ -13,7 +13,7 @@ class AuthorConnectManager
     public function __construct(Database $database)
     {
         $this->database = $database;
-    }    
+    }
 
     public function connectedAuthor(int $idAuthor, array $data) : bool
     {
@@ -23,10 +23,10 @@ class AuthorConnectManager
         pseudoAuthor = :loginAuthor AND
         authorPassWord = :authorPassWord
         ');
-       return $dbrequest->execute([
+        return $dbrequest->execute([
             'idAuthor'=>$idAuthor,
             'pseudoAuthor'=>$data['peuso-author'],
-            'authorPassWord'=>$data['pwd-author']       
+            'authorPassWord'=>$data['pwd-author']
         ]);
     }
-}    
+}

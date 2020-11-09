@@ -15,7 +15,6 @@ class CommentManager
     public function __construct(Database $database)
     {
         $this->database = $database;
-        
     }
 
     public function showAllFromPost(int $id): ?array
@@ -39,8 +38,7 @@ class CommentManager
             'idPost' => $idPost,
             'pseudoUser'=> $data['pseudo'],
             'commentText' => $data['comment']
-        ]);   
-        
+        ]);
     }
 
     public function reportCommentUpdate(int $idComment, array $data) : ?array
