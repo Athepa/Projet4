@@ -27,11 +27,11 @@ class CommentController
         exit();
     }
     
-    /*public function reportCommentAction(int $idComment): void
+    public function reportCommentAction(int $idComment): void
     {
         $this->commentManager->reportComment($idComment);
         $idPost = $this->commentManager->findPostId($idComment);
         header('location: index.php?action=post&idPost='.$idPost);
         exit();
-    }*/
+    }
 }

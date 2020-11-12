@@ -56,11 +56,11 @@ class Router
             $controller = new CommentController($commentManager);
             /*index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>*/
             $controller->saveCommentAction((int)$this->get['idPost'], $this->post);
-        } elseif/* ($action=== 'reportComment' && isset($this->get['idComment'])) {
+        } elseif($action=== 'reportComment' && isset($this->get['idComment'])) {
             $commentManager = new CommentManager($this->database);            
             $controller = new CommentController($commentManager);
             //http://index.php?action=reportComment&idComment=x
-            $controller->reportCommentAction((int)$this->get['idComment']);*/
+            $controller->reportCommentAction((int)$this->get['idComment']);
         }
         /*elseif ($action === 'authorConnect' && isset($this->get['idAuthor'])){
             $authorConnectManager = new AuthorConnectManager($this->database);

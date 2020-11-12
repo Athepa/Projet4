@@ -13,7 +13,7 @@
                 <p class="reader"><?='Publié par'.' '.$comments['pseudoUser'].' '.'le'.' '. $comments['fr_creationDate']?></p>
                 <p class="comment-detail"><?=$comments['commentText']?></p>        
                 <p class="report">
-                <?php/* 
+                <?php 
                     $reportValue = (int) $comments['report'];
                     if( $reportValue === 0)
                     {
@@ -24,7 +24,7 @@
                     } elseif ( $reportValue === 2)
                     {
                         echo 'Ce commentaire a été validé';
-                    }*/
+                    }
                 ?>    
                 </p>
             </div>    
