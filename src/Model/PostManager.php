@@ -17,7 +17,7 @@ class PostManager
 
     public function showAll() : ?array
     {
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost 
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
         FROM posts 
         ORDER BY fr_creationDate DESC LIMIT 0,10');
         
@@ -29,7 +29,7 @@ class PostManager
 
     public function showOne(int $id): ?array
     {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost 
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
         FROM posts
         WHERE idPost=:id
         ');
@@ -40,7 +40,7 @@ class PostManager
     }
 
 
-    public function showPage(int $id, int $postOrder): ?array
+    public function showPage(int $id, int $postOrder): int
     {
         $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
         FROM posts
@@ -50,7 +50,8 @@ class PostManager
 
         $dbrequest->execute(['id'=>$id, 'postOrder' => $postOrder]);
         $data = $dbrequest->fetch();
-        return $data;
+        return (int) $data['idPost'];
+        return (int) $data['postorder'];
     }
 
 
