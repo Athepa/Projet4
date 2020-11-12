@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 27 oct. 2020 à 15:57
+-- Généré le : jeu. 12 nov. 2020 à 18:45
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `author` (
   `loginAuthor` varchar(255) NOT NULL,
   `authorFirstName` varchar(255) NOT NULL,
   `authorName` varchar(255) NOT NULL,
-  `passWord` varchar(30) NOT NULL,
+  `authorPassWord` varchar(30) NOT NULL,
   PRIMARY KEY (`idAuthor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `author` (
 -- Déchargement des données de la table `author`
 --
 
-INSERT INTO `author` (`idAuthor`, `loginAuthor`, `authorFirstName`, `authorName`, `passWord`) VALUES
-(1, 'themarshall', 'Thed', 'Marshall', 'TotoEstGénial_25');
+INSERT INTO `author` (`idAuthor`, `loginAuthor`, `authorFirstName`, `authorName`, `authorPassWord`) VALUES
+(1, 'fortejean', 'Jean', 'Forteroche', 'TotoEstGénial_25');
 
 -- --------------------------------------------------------
 
@@ -57,20 +57,23 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `pseudoUser` varchar(255) NOT NULL,
   `creationDate` datetime NOT NULL,
   `commentText` text NOT NULL,
+  `report` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idComment`),
   KEY `idPost` (`idPost`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `comments`
 --
 
-INSERT INTO `comments` (`idComment`, `idPost`, `pseudoUser`, `creationDate`, `commentText`) VALUES
-(1, 1, 'Toto', '2020-08-28 15:47:22', 'C\'est très intéressant comme concept!!!'),
-(2, 1, 'Caliméro', '2020-10-02 13:41:23', 'C\'est pas juste!'),
-(3, 2, 'Marty', '2020-10-09 11:18:59', 'Super génial!'),
-(4, 2, 'Caton', '2020-10-09 11:21:39', 'Carthago delenda est!'),
-(5, 2, 'Marcel', '2020-10-27 16:44:03', 'Blalalalala');
+INSERT INTO `comments` (`idComment`, `idPost`, `pseudoUser`, `creationDate`, `commentText`, `report`) VALUES
+(1, 1, 'Toto', '2020-08-28 15:47:22', 'C\'est très intéressant comme concept!!!', 0),
+(2, 1, 'Caliméro', '2020-10-02 13:41:23', 'C\'est pas juste!', 0),
+(4, 2, 'Caton', '2020-10-09 11:21:39', 'Carthago delenda est!', 1),
+(5, 2, 'Marcel', '2020-10-27 16:44:03', 'Blalalalala', 0),
+(9, 2, 'Marshall', '2020-10-27 18:20:50', 'Aeneadum genetrix hominum divimque voluptas!', 0),
+(10, 2, 'Tutu', '2020-10-27 18:25:33', 'Optitimus adventus!', 0),
+(11, 1, 'Junior', '2020-10-27 18:44:01', 'C\'est éblouissant!!!', 0);
 
 -- --------------------------------------------------------
 
@@ -85,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `titlePost` varchar(255) NOT NULL,
   `creationDate` datetime NOT NULL,
   `textPost` text NOT NULL,
+  `postorder` int(11) NOT NULL,
   PRIMARY KEY (`idPost`),
   KEY `idAuthor` (`idAuthor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -93,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
 -- Déchargement des données de la table `posts`
 --
 
-INSERT INTO `posts` (`idPost`, `idAuthor`, `titlePost`, `creationDate`, `textPost`) VALUES
-(1, 1, 'Quo cognito Constantius', '2020-08-28 15:45:17', 'Et est admodum mirum videre plebem innumeram mentibus ardore quodam infuso cum dimicationum curulium eventu pendentem. haec similiaque memorabile nihil vel serium agi Romae permittunt. ergo redeundum ad textum.\r\n\r\nHacque adfabilitate confisus cum eadem postridie feceris, ut incognitus haerebis et repentinus, hortatore illo hesterno clientes numerando, qui sis vel unde venias diutius ambigente agnitus vero tandem et adscitus in amicitiam si te salutandi adsiduitati dederis triennio indiscretus et per tot dierum defueris tempus, reverteris ad paria perferenda, nec ubi esses interrogatus et quo tandem miser discesseris, aetatem omnem frustra in stipite conteres summittendo.'),
-(2, 1, 'Casu conati cohortium robur robur', '2020-09-29 20:10:00', 'Quid enim tam absurdum quam delectari multis inanimis rebus, ut honore, ut gloria, ut aedificio, ut vestitu cultuque corporis, animante virtute praedito, eo qui vel amare vel, ut ita dicam, redamare possit, non admodum delectari? Nihil est enim remuneratione benevolentiae, nihil vicissitudine studiorum officiorumque iucundius.\r\n\r\nNec sane haec sola pernicies orientem diversis cladibus adfligebat. Namque et Isauri, quibus est usitatum saepe pacari saepeque inopinis excursibus cuncta miscere, ex latrociniis occultis et raris, alente inpunitate adulescentem in peius audaciam ad bella gravia proruperunt, diu quidem perduelles spiritus inrequietis motibus erigentes, hac tamen indignitate perciti vehementer, ut iactitabant, quod eorum capiti quidam consortes apud Iconium Pisidiae oppidum in amphitheatrali spectaculo feris praedatricibus obiecti sunt praeter morem.\r\n\r\nPost hoc impie perpetratum quod in aliis quoque iam timebatur, tamquam licentia crudelitati indulta per suspicionum nebulas aestimati quidam noxii damnabantur. quorum pars necati, alii puniti bonorum multatione actique laribus suis extorres nullo sibi relicto praeter querelas et lacrimas, stipe conlaticia victitabant, et civili iustoque imperio ad voluntatem converso cruentam, claudebantur opulentae domus et clarae.');
+INSERT INTO `posts` (`idPost`, `idAuthor`, `titlePost`, `creationDate`, `textPost`, `postorder`) VALUES
+(1, 1, 'Quo cognito Constantius', '2020-08-28 15:45:17', 'Et est admodum mirum videre plebem innumeram mentibus ardore quodam infuso cum dimicationum curulium eventu pendentem. haec similiaque memorabile nihil vel serium agi Romae permittunt. ergo redeundum ad textum.\r\n\r\nHacque adfabilitate confisus cum eadem postridie feceris, ut incognitus haerebis et repentinus, hortatore illo hesterno clientes numerando, qui sis vel unde venias diutius ambigente agnitus vero tandem et adscitus in amicitiam si te salutandi adsiduitati dederis triennio indiscretus et per tot dierum defueris tempus, reverteris ad paria perferenda, nec ubi esses interrogatus et quo tandem miser discesseris, aetatem omnem frustra in stipite conteres summittendo.', 1),
+(2, 1, 'Casu conati cohortium robur robur', '2020-09-29 20:10:00', 'Quid enim tam absurdum quam delectari multis inanimis rebus, ut honore, ut gloria, ut aedificio, ut vestitu cultuque corporis, animante virtute praedito, eo qui vel amare vel, ut ita dicam, redamare possit, non admodum delectari? Nihil est enim remuneratione benevolentiae, nihil vicissitudine studiorum officiorumque iucundius.\r\n\r\nNec sane haec sola pernicies orientem diversis cladibus adfligebat. Namque et Isauri, quibus est usitatum saepe pacari saepeque inopinis excursibus cuncta miscere, ex latrociniis occultis et raris, alente inpunitate adulescentem in peius audaciam ad bella gravia proruperunt, diu quidem perduelles spiritus inrequietis motibus erigentes, hac tamen indignitate perciti vehementer, ut iactitabant, quod eorum capiti quidam consortes apud Iconium Pisidiae oppidum in amphitheatrali spectaculo feris praedatricibus obiecti sunt praeter morem.\r\n\r\nPost hoc impie perpetratum quod in aliis quoque iam timebatur, tamquam licentia crudelitati indulta per suspicionum nebulas aestimati quidam noxii damnabantur. quorum pars necati, alii puniti bonorum multatione actique laribus suis extorres nullo sibi relicto praeter querelas et lacrimas, stipe conlaticia victitabant, et civili iustoque imperio ad voluntatem converso cruentam, claudebantur opulentae domus et clarae.', 2);
 
 --
 -- Contraintes pour les tables déchargées
