@@ -106,22 +106,36 @@ nav a, footer a{
     font-family: 'exo', sans-serif;
 }
 
-.post-link{
+.post-link , #send{
     display: block;
     text-decoration: none;
     border: 1px rgb(240,128,128) solid;
     background-color: whitesmoke;
     font-size: 1.5rem;
     width: fit-content;
-    padding: 0.5rem;
     border-radius: 5px;
     color:rgb(240,128,128);
     font-family: 'exo', sans-serif;
+    transform: transform 500ms ease-in-out;
+    cursor: pointer;
 }
 
-.post-link :hover {
+.post-link{
+    padding: 0;
+}
+
+.post-link a{
+    text-decoration: none;
+    color:rgb(240,128,128) ;
+    transform: scale(1.4);
+    z-index: 2;
+    
+}
+
+.post-link:hover, .post-link a:hover,#send:hover {
     color: whitesmoke;
     background-color: rgb(240,128,128);
+    transform: scale(1.4);
 }
 
 .posts-list{
@@ -163,16 +177,90 @@ nav a, footer a{
     margin-top: 0;
 }
 
+.single-episode{
+    margin-top: 10rem;
+    padding: 1rem; 
+    background-color:rgba(240,128,128,0.8) ; 
+    margin-bottom: 3rem;
+}
+
+.single-episode h2{
+    font-family: 'exobold', sans-serif;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.the-episode{
+    font-family: 'exo', sans-serif;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    padding: 1rem;
+}
+
+.comments-form{    
+    padding: 1rem;
+    border: 2px whitesmoke solid;
+    border-radius: 10px;
+}
+
+#comment{
+    height: 6rem;
+}
+
+#pseudo, #comment{
+    display: block;
+    width: 99%;
+    margin: auto;
+    font-family: 'exo', sans-serif;
+    font-size: 1.25rem;
+    border: 2px whitesmoke solid;
+    border-radius: 10px;
+}
 
 p{
     text-align: justify;
 }
 
+.single-comment{
+    border-radius: 10px;
+    border: 2px whitesmoke solid;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.reader{
+    font-family: 'exolight';
+    color: whitesmoke;
+    font-size: 0.75rem;
+}
+
+.comment-detail{
+    font-family: 'exo', sans-serif;
+    font-size: 1rem;
+    color: whitesmoke;
+}
+
 .report{
-    text-align: center;
-    border: 1px grey solid;
-    background-color: grey;
-    width:15%;
+    text-align: center;   
+    border: 1px rgb(240,128,128) solid;
+    background-color: whitesmoke;
+    padding: 0.5rem;
+    width: 30%;
+    font-size: 1rem;
+    border-radius: 5px;
+    color:rgb(240,128,128);
+    font-family: 'exo', sans-serif;
+    align-self: flex-end;
+}
+
+.report a{
+    text-decoration: none;
+    padding: 1rem;
+    color:rgb(240,128,128) ;
 }
 
 footer{

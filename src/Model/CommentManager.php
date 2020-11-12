@@ -19,7 +19,7 @@ class CommentManager
 
     public function showAllFromPost(int $id): ?array
     {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idComment,idPost, pseudoUser, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, commentText  
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idComment,idPost, pseudoUser, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, commentText,report  
         FROM comments
         WHERE idPost=:id
         ');
@@ -41,14 +41,26 @@ class CommentManager
         ]);
     }
 
-    public function reportComment(int $idComment, array $data) : int
+    public function findPostId(int $idComment): int
+    {
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost
+        FROM comments
+        WHERE idComment = :id
+        ');
+
+        $dbrequest->execute(['id'=>$idComment]);
+        $data = $dbrequest->fetch();
+        return (int) $data['idPost'];
+    }
+
+   /* public function reportComment(int $idComment) : void
     {
         $dbrequest = $this->database->connectDB()->prepare('UPDATE comments SET report = 1
         WHERE idComment = :idComment
         ');
         $dbrequest->execute(['idComment'=>$idComment]);
-        return $data['report'];
-    }
+       
+    }*/
 
     public function validateComment(int $idComment, array $data) : int
     {

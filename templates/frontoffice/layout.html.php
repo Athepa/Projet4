@@ -13,8 +13,7 @@
                 </div> 
                 <div class="menu-navigation">       
                     <a href="index.php">ACCUEIL</a>
-                    <a href="index.php?action=posts">EPISODES</a>            
-                    <a href="index.php?action=unknow">ME CONTACTER</a>
+                    <a href="index.php?action=posts">EPISODES</a>
                 </div> 
             </nav>        
 
@@ -27,7 +26,6 @@
                     <h3>Plan du site</h3>
                     <p><a href="index.php">Accueil</a></p>
                     <p><a href="index.php?action=posts">Episodes</a></p>
-                    <p><a href="index.php?action=unknow">Contact</a></p>
                 <!--</div>
                 <div class="connection-auteur">
                     <a href="index.php?action=authorConnect&idAuthor=$data['idAuthor']>">Je suis Jean Forteroche</a>

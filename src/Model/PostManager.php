@@ -40,15 +40,30 @@ class PostManager
     }
 
 
+    public function showPage(int $id, int $postOrder): ?array
+    {
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
+        FROM posts
+        WHERE idPost = :id
+        postorder=:postOrder
+        ');
+
+        $dbrequest->execute(['id'=>$id, 'postOrder' => $postOrder]);
+        $data = $dbrequest->fetch();
+        return $data;
+    }
+
+
     public function addPost(int $idAuthor, array $data): bool
     {
-        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO post (idPost, IdAuthor, tilePost, creationDate, textPost) 
-        VALUES (:idAuthor, :titlePost, NOW(), :textPost)
+        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO post (idPost, IdAuthor, tilePost, creationDate, textPost, postorder) 
+        VALUES (:idAuthor, :titlePost, NOW(), :textPost, :postorder)
         ');
         return $dbrequest->execute([
             'idAuthor' => $idAuthor,
             'titlePost'=> $data['title-post'],
-            'textPost' => $data['text-post']
+            'textPost' => $data['text-post'],
+            'postorder' => $data['post-order']
             ]);
     }
 }

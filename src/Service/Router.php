@@ -46,7 +46,8 @@ class Router
             $controller = new PostController($postManager, $commentManager, $this->view);
             //http://index.php?action=post&idPost=X
             $controller->displayOneAction((int)$this->get['idPost']);
-        } elseif ($action === 'home') {
+        }
+        elseif ($action === 'home') {
             $controller = new HomeController($this->view);
             //http://index.php
             $controller->displayHome();
@@ -55,11 +56,11 @@ class Router
             $controller = new CommentController($commentManager);
             /*index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>*/
             $controller->saveCommentAction((int)$this->get['idPost'], $this->post);
-        } elseif ($action=== 'reportComment' && isset($this->get['idComment'])) {
-            $commentManager = new CommentManager($this->database);
+        } elseif/* ($action=== 'reportComment' && isset($this->get['idComment'])) {
+            $commentManager = new CommentManager($this->database);            
             $controller = new CommentController($commentManager);
             //http://index.php?action=reportComment&idComment=x
-            $controller->reportCommentAction((int)$this->get['idComment'], $this->post);
+            $controller->reportCommentAction((int)$this->get['idComment']);*/
         }
         /*elseif ($action === 'authorConnect' && isset($this->get['idAuthor'])){
             $authorConnectManager = new AuthorConnectManager($this->database);

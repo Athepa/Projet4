@@ -6,7 +6,7 @@
         <h3 class="post-title"><?=$post['titlePost']?></h3>
         <p class="publication-date">Publié le <?=$post['fr_creationDate']?></p>
         <p class="post-text-sample"><?=$post['textPost']?></p>
-        <a class="post-link" href="index.php?action=post&idPost=<?=$post['idPost']?>">Lire l'épisode</a>
+        <button class="post-link"><a  href="index.php?action=post&idPost=<?=$post['idPost']?>">Lire l'épisode</a></button>
             
     <?php endforeach; ?>
 </section>
