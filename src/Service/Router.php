@@ -46,14 +46,13 @@ class Router
             $controller = new PostController($postManager, $commentManager, $this->view);
             //http://index.php?action=post&idPost=X
             $controller->displayOneAction((int)$this->get['idPost']);
-        } elseif($action === 'post' && isset($this->get['idPost']) && isset($this->get['postorder'])){
+        } elseif ($action === 'post' && isset($this->get['idPost']) && isset($this->get['postorder'])) {
             $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
             $controller = new PostController($postManager, $commentManager, $this->view);
             //index.php?action=post&idPost=X&postorder=X
             $controller->displayPage((int)$this->get['idPost'], (int)$this->get['postorder']);
-        }
-        elseif ($action === 'home') {
+        } elseif ($action === 'home') {
             $controller = new HomeController($this->view);
             //http://index.php
             $controller->displayHome();
@@ -62,8 +61,8 @@ class Router
             $controller = new CommentController($commentManager);
             /*index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>*/
             $controller->saveCommentAction((int)$this->get['idPost'], $this->post);
-        } elseif($action=== 'reportComment' && isset($this->get['idComment'])) {
-            $commentManager = new CommentManager($this->database);            
+        } elseif ($action=== 'reportComment' && isset($this->get['idComment'])) {
+            $commentManager = new CommentManager($this->database);
             $controller = new CommentController($commentManager);
             //http://index.php?action=reportComment&idComment=x
             $controller->reportCommentAction((int)$this->get['idComment']);

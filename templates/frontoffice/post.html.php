@@ -1,18 +1,18 @@
-    <article class="single-episode">
-        <h2><?=$data['onepost']['titlePost']?></h2>
-        <p class="the-episode"><?=$data['onepost']['textPost']?></p>
+<article class="single-episode">
+    <h2><?=$data['onepost']['titlePost']?></h2>
+    <p class="the-episode"><?=$data['onepost']['textPost']?></p>
         
-        <form class="comments-form" method="post" action="index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>">            
-            <p><input id="pseudo" type="text" name="pseudo" placeholder="Votre pseudonyme" required/></p>
-            <textarea id="comment" type="text" name="comment" placeholder="Votre commentaire" required></textarea>
-            <p><input type="submit" id="send"/></p>
-        </form>
+    <form class="comments-form" method="post" action="index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>">            
+        <p><input id="pseudo" type="text" name="pseudo" placeholder="Votre pseudonyme" required/></p>
+        <textarea id="comment" type="text" name="comment" placeholder="Votre commentaire" required></textarea>
+        <p><input type="submit" id="send"/></p>
+    </form>
         
-        <?php foreach($data['comments'] as $comments): ?>
-            <div class="single-comment">
-                <p class="reader"><?='Publié par'.' '.$comments['pseudoUser'].' '.'le'.' '. $comments['fr_creationDate']?></p>
-                <p class="comment-detail"><?=$comments['commentText']?></p>        
-                <p class="report">
+    <?php foreach($data['comments'] as $comments): ?>
+        <div class="single-comment">
+            <p class="reader"><?='Publié par'.' '.$comments['pseudoUser'].' '.'le'.' '. $comments['fr_creationDate']?></p>
+            <p class="comment-detail"><?=$comments['commentText']?></p>        
+            <p class="report">
                 <?php 
                     $reportValue = (int) $comments['report'];
                     if( $reportValue === 0)
@@ -26,9 +26,9 @@
                         echo 'Ce commentaire a été validé';
                     }
                 ?>    
-                </p>
-            </div>    
-        <?php endforeach; ?>
+            </p>
+        </div>             
+    <?php endforeach; ?>
         <p class="pagination">
             <?php
                 $previousPage = (int) $data['onepost']['postorder']-1;
@@ -43,6 +43,5 @@
                 }
 
             ?>
-        </p>
-        
-    </article>
+        </p>           
+</article>

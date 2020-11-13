@@ -116,7 +116,7 @@ nav a, footer a{
     border-radius: 5px;
     color:rgb(240,128,128);
     font-family: 'exo', sans-serif;
-    transform: transform 500ms ease-in-out;
+    transition: transform 500ms ease-in-out;
     cursor: pointer;
 }
 
@@ -263,10 +263,32 @@ p{
     color:rgb(240,128,128) ;
 }
 
+.pagination{
+    display: flex;
+    border: 2px whitesmoke solid;
+    border-radius: 10px;
+    width: 45%;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.pagination a{
+    display: block;
+    font-family: 'exo', sans-serif;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    text-decoration: none;
+    transition: transform 800ms ease-in-out;
+}
+
+.pagination a:hover{
+    transform: scale(1.5) ;
+}
+
 footer{
     background-color: rgb(205,92,92);
     width: 100%;
-    color: whitesmoke;
+    color: whitesmoke;    
 }
 
 .bottom-page{

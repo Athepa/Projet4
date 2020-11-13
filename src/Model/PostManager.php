@@ -57,7 +57,7 @@ class PostManager
 
     public function addPost(int $idAuthor, array $data): bool
     {
-        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO post (idPost, IdAuthor, tilePost, creationDate, textPost, postorder) 
+        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO post (idPost, IdAuthor, titlePost, creationDate, textPost, postorder) 
         VALUES (:idAuthor, :titlePost, NOW(), :textPost, :postorder)
         ');
         return $dbrequest->execute([
@@ -66,5 +66,18 @@ class PostManager
             'textPost' => $data['text-post'],
             'postorder' => $data['post-order']
             ]);
+    }
+
+    public function updatePost(int $idPost, array $data) : bool
+    {
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET titlePost, textPost
+        WHERE idPost = :idPost,
+        titlePost = :titlePost,
+        textPost = :textPost
+        ');
+        return $dbrequest->execute(['idPost'=>$idPost,
+            'titlePost' => $data['title-post'],
+            'textPost' => $data['text-post']
+        ]);
     }
 }

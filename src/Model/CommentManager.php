@@ -53,16 +53,15 @@ class CommentManager
         return (int) $data['idPost'];
     }
 
-   public function reportComment(int $idComment) : void
+    public function reportComment(int $idComment) : void
     {
         $dbrequest = $this->database->connectDB()->prepare('UPDATE comments SET report = 1
         WHERE idComment = :idComment
         ');
         $dbrequest->execute(['idComment'=>$idComment]);
-       
     }
 
-    public function validateComment(int $idComment, array $data) : void
+    public function validateComment(int $idComment) : void
     {
         $dbrequest = $this->database->connectDB()->prepare('UPDATE comments SET report = 2
         WHERE idComment = :idComment

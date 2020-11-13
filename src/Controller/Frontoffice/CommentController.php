@@ -6,7 +6,6 @@ namespace  App\Controller\Frontoffice;
 
 use App\Model\CommentManager;
 
-
 class CommentController
 {
     private CommentManager $commentManager;
@@ -16,7 +15,6 @@ class CommentController
     public function __construct(CommentManager $commentManager)
     {
         $this->commentManager = $commentManager;
-       
     }
 
     public function saveCommentAction(int $idPost, array $data): void
