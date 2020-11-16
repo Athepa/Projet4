@@ -35,11 +35,11 @@
                 $nextPage = (int) $data['onepost']['postorder']+1;
                 if($data['onepost']['postorder']===1)
                 {
-                    echo'<a href="index.php?action=post&idPost='.$data['onepost']['idPost'].'postorder='.$nextPage.' "> Episode suivant </a>';
+                    echo'<a href="index.php?action=post&postorder='.$nextPage.' "> Episode suivant </a>';
                 } elseif ($data['onepost']['postorder']>1)
                 {
-                    echo'<a href="index.php?action=post&idPost='.$data['onepost']['idPost'].'&postorder='.$previousPage.' "> Episode précédent </a>';
-                    echo'<a href="index.php?action=post&idPost='.$data['onepost']['idPost'].'&postorder='.$nextPage.' "> Episode suivant </a>';
+                    echo'<a href="index.php?action=post&postorder='.$previousPage.' "> Episode précédent </a>';
+                    echo'<a href="index.php?action=post&postorder='.$nextPage.' "> Episode suivant </a>';
                 }
 
             ?>
