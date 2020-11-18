@@ -31,6 +31,7 @@ class PostManager
         $data = $dbrequest->fetch();
         return (int)$data;
     }
+    
 
     
 
