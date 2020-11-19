@@ -19,7 +19,7 @@ class PostManager
     {
         $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
         FROM posts 
-        ORDER BY postorder DESC LIMIT 0, 4');
+        ORDER BY postorder LIMIT 0, 4');
         
         $data = $dbrequest->fetchAll();
         return $data;
@@ -31,7 +31,21 @@ class PostManager
         $data = $dbrequest->fetch();
         return (int)$data;
     }
-    
+
+    /*public function postsToShow(): ?array
+    {
+        $numberOfPosts = 4;
+        if(!isset($limit)){
+            $limit=0;
+        }
+
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder
+        FROM posts
+        ORDER BY postorder DESC LIMIT'.$limit. ','.$numberOfPosts);
+
+        $data = $dbrequest->fetchAll();
+    }*/
+
 
     
 
@@ -49,21 +63,29 @@ class PostManager
         return $data;
     }
 
-
-    public function showPage(int $id, int $postOrder): int
+    public function nextPost(int $postorder): ?int
     {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost
         FROM posts
-        WHERE idPost = :id
-        postorder=:postOrder
+        WHERE postorder= (SELECT min(postorder) FROM posts WHERE postorder > :postorder)
         ');
 
-        $dbrequest->execute(['id'=>$id, 'postOrder' => $postOrder]);
+        $dbrequest->execute(['postorder'=>$postorder]);
         $data = $dbrequest->fetch();
         return (int) $data['idPost'];
-        return (int) $data['postorder'];
     }
 
+    public function previousPost(int $postorder): ?int
+    {
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost
+        FROM posts
+        WHERE postorder= (SELECT max(postorder) FROM posts WHERE postorder < :postorder)
+        ');
+
+        $dbrequest->execute(['postorder'=>$postorder]);
+        $data = $dbrequest->fetch();
+        return (int) $data['idPost'];
+    }
 
     public function addPost(int $idAuthor, array $data): bool
     {
