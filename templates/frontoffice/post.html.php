@@ -30,27 +30,9 @@
         </div>             
     <?php endforeach; ?>
         <p class="pagination">
-            <?php
-            if($data['onepost']['postorder']===1)
-            {
-                echo'<a href="index.php?action=post&idPost='.$data['nextId'].' "> Episode suivant </a>';
-            } elseif($data['onepost']['postorder']>1)
-            {
+            <?php                
                 echo'<a href="index.php?action=post&idPost='.$data['prevId'].' "> Episode précédent </a>';
                 echo'<a href="index.php?action=post&idPost='.$data['nextId'].' "> Episode suivant </a>';
-            }
-                
-                /*$previousPage = (int) $data['onepost']['postorder']-1;
-                $nextPage = (int) $data['onepost']['postorder']+1;
-                if($data['onepost']['postorder']===1)
-                {
-                    echo'<a href="index.php?action=post&postorder='.$nextPage.' "> Episode suivant </a>';
-                } elseif ($data['onepost']['postorder']>1)
-                {
-                    echo'<a href="index.php?action=post&postorder='.$previousPage.' "> Episode précédent </a>';
-                    echo'<a href="index.php?action=post&postorder='.$nextPage.' "> Episode suivant </a>';
-                }*/
-
             ?>
         </p>           
 </article>

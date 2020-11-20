@@ -25,14 +25,16 @@ class PostController
     {
         $dataPost = $this->postManager->showOne($id);
         $idNext = $this->postManager->nextPost((int) $dataPost['postorder']);
-        $idPrev = $this->postManager->previousPost($id);
+        $idPrev = $this->postManager->previousPost((int) $dataPost['postorder']);
         $dataComments = $this->commentManager->showAllFromPost($id);
 
-        if ($dataPost !== null) {
+        if ($dataPost !== null && $idNext!== null || $idPrev!== null) {
             $this->view->render(['template' => 'post','onepost' => $dataPost, 'comments' => $dataComments, 'prevId'=>$idPrev, 'nextId'=>$idNext]);
-        } elseif ($dataPost === null) {
+        } elseif ($dataPost === null || $idNext === null || $idPrev === null) {
             echo '<h1>faire une redirection vers la page d\'erreur, ce post n\'existe pas</h1><a href="index.php?action=posts">Liste des posts</a><br>';
         }
+
+
     }
 
 

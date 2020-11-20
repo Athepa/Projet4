@@ -162,6 +162,10 @@ nav a, footer a{
     border-bottom: 2px whitesmoke solid;
 }
 
+.post-title a{
+    color: whitesmoke;
+}
+
 .posts-list h3{
     font-family: 'exobold', sans-serif;
     font-size: 2rem;
