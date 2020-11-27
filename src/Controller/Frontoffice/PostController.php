@@ -28,13 +28,11 @@ class PostController
         $idPrev = $this->postManager->previousPost((int) $dataPost['postorder']);
         $dataComments = $this->commentManager->showAllFromPost($id);
 
-        if ($dataPost !== null && $idNext!== null || $idPrev!== null) {
+        if ($dataPost !== null) {
             $this->view->render(['template' => 'post','onepost' => $dataPost, 'comments' => $dataComments, 'prevId'=>$idPrev, 'nextId'=>$idNext]);
-        } elseif ($dataPost === null || $idNext === null || $idPrev === null) {
-            echo '<h1>faire une redirection vers la page d\'erreur, ce post n\'existe pas</h1><a href="index.php?action=posts">Liste des posts</a><br>';
+        } elseif ($dataPost === null) {
+            echo '<h1>La page à laquelle vous essayer d\'acéder est indisponible</h1><a href="index.php?action=posts">Retouner à la liste des épisodes</a><br>';
         }
-
-
     }
 
 

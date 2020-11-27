@@ -72,7 +72,11 @@ class PostManager
 
         $dbrequest->execute(['postorder'=>$postorder]);
         $data = $dbrequest->fetch();
-        return (int) $data['idPost'];
+        if ($data=== true) {
+            return (int) $data['idPost'];
+        }
+        
+        return  null;
     }
 
     public function previousPost(int $postorder): ?int
@@ -84,7 +88,11 @@ class PostManager
 
         $dbrequest->execute(['postorder'=>$postorder]);
         $data = $dbrequest->fetch();
-        return (int) $data['idPost'];
+        if ($data=== true) {
+            return (int) $data['idPost'];
+        }
+        
+        return  null;
     }
 
     public function addPost(int $idAuthor, array $data): bool

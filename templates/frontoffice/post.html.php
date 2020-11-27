@@ -30,9 +30,22 @@
         </div>             
     <?php endforeach; ?>
         <p class="pagination">
-            <?php                
+            <?php 
+            if($data['prevId']!==null && $data['nextId']===null)
+            {
                 echo'<a href="index.php?action=post&idPost='.$data['prevId'].' "> Episode précédent </a>';
+            } else{
                 echo'<a href="index.php?action=post&idPost='.$data['nextId'].' "> Episode suivant </a>';
+            }
+
+            if($data['nextId']!==null && $data['prevId']===null)
+            {
+                echo'<a href="index.php?action=post&idPost='.$data['nextId'].' "> Episode suivant </a>';
+            }  else{
+                echo'<a href="index.php?action=post&idPost='.$data['prevId'].' "> Episode précédent </a>';
+            }
+            
+                
             ?>
         </p>           
 </article>
