@@ -65,6 +65,7 @@ class PostManager
 
     public function nextPost(int $postorder): ?int
     {
+        
         $dbrequest = $this->database->connectDB()->prepare('SELECT idPost
         FROM posts
         WHERE postorder= (SELECT min(postorder) FROM posts WHERE postorder > :postorder)
@@ -72,7 +73,7 @@ class PostManager
 
         $dbrequest->execute(['postorder'=>$postorder]);
         $data = $dbrequest->fetch();
-        if ($data=== true) {
+       if ($data!== false) {
             return (int) $data['idPost'];
         }
         
@@ -88,12 +89,17 @@ class PostManager
 
         $dbrequest->execute(['postorder'=>$postorder]);
         $data = $dbrequest->fetch();
-        if ($data=== true) {
+        if ($data!== false) {
             return (int) $data['idPost'];
         }
         
         return  null;
     }
+
+    /*public function countPosts(): int
+    {
+        $dbrequest = $this->database->connectDB()->
+    }*/
 
     public function addPost(int $idAuthor, array $data): bool
     {
