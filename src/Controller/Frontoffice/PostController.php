@@ -38,7 +38,7 @@ class PostController
 
     public function displayAllAction(): void
     {
-        //$numberOfPostsPerPage = 4;
+        $numberOfPostsPerPage = 4;
         $posts = $this->postManager->showAll();
 
         if ($posts !== null) {

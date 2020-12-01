@@ -35,7 +35,7 @@ class Router
         $action = isset($this->get['action']) ? $this->get['action'] : 'home';
 
         if ($action === 'posts') {
-            //$currentPage = !isset($this->get['page'])? $this->get['page'] : 1;
+            $currentPage = !isset($this->get['page'])? $this->get['page'] : 1;
             $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
             $controller = new PostController($postManager, $commentManager, $this->view);
