@@ -9,6 +9,17 @@
         <button class="post-link"><a  href="index.php?action=post&idPost=<?=$post['idPost']?>">Lire l'épisode</a></button>            
     <?php endforeach; ?>
     <p class="posts-paging">
+        <?php
+            if($data['prevPage']!== null)
+            {
+                echo '<a href="index.php?action=posts&page='.$data['prevPage'].' ">Page précédente</a>';
+            }
+
+            if($data['nextPage']!== null)
+            {
+                echo '<a href="index.php?action=posts&page='.$data['nextPage'].' ">Page suivante</a>';
+            }        
         
+        ?>
     </p>
 </section>

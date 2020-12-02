@@ -35,12 +35,12 @@ class Router
         $action = isset($this->get['action']) ? $this->get['action'] : 'home';
 
         if ($action === 'posts') {
-            $currentPage = !isset($this->get['page'])? $this->get['page'] : 1;
             $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
             $controller = new PostController($postManager, $commentManager, $this->view);
             //http://index.php?action=posts
-            $controller->displayAllAction();
+            $currentPage = isset($this->get['page'])? $this->get['page'] : 1;
+            $controller->displayAllAction($currentPage);
         } elseif ($action === 'post' && isset($this->get['idPost'])) {
             $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
@@ -70,7 +70,7 @@ class Router
         }*/
         else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
-            <a href=http://localhost:8000/?action=posts>Revenir à la liste des articles</a>";
+            <a href=http://localhost:8000/?action=posts>Revenir à la liste des épisodes</a>";
         }
     }
 }

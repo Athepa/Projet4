@@ -19,38 +19,33 @@ class PostManager
     {
         $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
         FROM posts 
-        ORDER BY postorder LIMIT 0, 4');
+        ORDER BY postorder ');
         
         $data = $dbrequest->fetchAll();
         return $data;
     }
 
-    public function countingIdPost(): int
+    public function countingPost(): int
     {
         $dbrequest = $this->database->connectDB()->query('SELECT count(IdPost) FROM posts');
         $data = $dbrequest->fetch();
-        return (int)$data;
+        return (int)$data[0];
     }
-
-    /*public function postsToShow(): ?array
+    
+    public function showAllPaginated(int $currentPage, int $numberOfPostsPerPage): ?array
     {
-        $numberOfPosts = 4;
-        if(!isset($limit)){
-            $limit=0;
-        }
-
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder
-        FROM posts
-        ORDER BY postorder DESC LIMIT'.$limit. ','.$numberOfPosts);
-
+        $limitNb =  ($currentPage -1)* $numberOfPostsPerPage;
+        
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
+        FROM posts 
+        ORDER BY postorder LIMIT :limitNumber, :numberOfPostsPerPage ');
+        $dbrequest->bindValue(':numberOfPostsPerPage', $numberOfPostsPerPage, \PDO::PARAM_INT);
+        $dbrequest->bindValue(':limitNumber', $limitNb, \PDO::PARAM_INT);
+        $dbrequest->execute();
         $data = $dbrequest->fetchAll();
-    }*/
-
-
-    
-
-    
-
+        return $data;
+    }
+  
     public function showOne(int $id): ?array
     {
         $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
@@ -65,7 +60,6 @@ class PostManager
 
     public function nextPost(int $postorder): ?int
     {
-        
         $dbrequest = $this->database->connectDB()->prepare('SELECT idPost
         FROM posts
         WHERE postorder= (SELECT min(postorder) FROM posts WHERE postorder > :postorder)
@@ -73,7 +67,7 @@ class PostManager
 
         $dbrequest->execute(['postorder'=>$postorder]);
         $data = $dbrequest->fetch();
-       if ($data!== false) {
+        if ($data!== false) {
             return (int) $data['idPost'];
         }
         
@@ -95,11 +89,6 @@ class PostManager
         
         return  null;
     }
-
-    /*public function countPosts(): int
-    {
-        $dbrequest = $this->database->connectDB()->
-    }*/
 
     public function addPost(int $idAuthor, array $data): bool
     {
