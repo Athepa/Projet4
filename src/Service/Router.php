@@ -8,7 +8,6 @@ use App\Controller\Frontoffice\AuthorConnectController;
 use App\Controller\Frontoffice\CommentController;
 use App\Controller\Frontoffice\HomeController;
 use App\Controller\Frontoffice\PostController;
-use App\Model\AuthorConnectManager;
 use App\Model\CommentManager;
 use App\Model\PostManager;
 use App\Service\Database;
@@ -62,12 +61,13 @@ class Router
             //http://index.php?action=reportComment&idComment=x
             $controller->reportCommentAction((int)$this->get['idComment']);
         }
-        /*elseif ($action === 'authorConnect' && isset($this->get['idAuthor'])){
-            $authorConnectManager = new AuthorConnectManager($this->database);
-            $controller = new AuthorConnectController($authorConnectManager);
-            /*index.php?action=authorConnect&idAuthor=<?=$data['idAuthor']?>
-            $controller->connectedAuthor((int)$this->get['idAuthor'], $this->post);
-        }*/
+        elseif ($action === 'AuthorAddPost' && isset($this->get['idAuthor'])){
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new PostController($postManager, $commentManager, $this->view);
+            //index.php?action=AuthorAddPost&idAuthor=X
+            $controller->addPostAction((int)$this->get['idAuthor'], $this->post);
+        }
         else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/?action=posts>Revenir à la liste des épisodes</a>";

@@ -54,7 +54,7 @@ class PostController
         if ($nextPage>$numberOfPages) {
             $nextPage = null;
         }
-        
+
         $posts = $this->postManager->showAllPaginated($currentPage, $numberOfPostsPerPage);
 
         if ($posts !== null) {
@@ -62,5 +62,12 @@ class PostController
         } elseif ($posts === null) {
             echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
         }
+    }
+
+    public function addPostAction($idAuthor, $data) : void
+    {
+        $this->postManager->addPost($idAuthor, $data);        
+        //header('location: index.php?action=AuthorAddPost&idAuthor='.$idAuthor);
+        //exit();
     }
 }
