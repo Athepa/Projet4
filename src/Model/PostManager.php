@@ -103,7 +103,7 @@ class PostManager
             ]);
     }
 
-    public function updatePost(int $idPost, array $data) : bool
+    /*public function updatePost(int $idPost, array $data) : bool
     {
         $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET titlePost, textPost
         WHERE idPost = :idPost,
@@ -114,5 +114,5 @@ class PostManager
             'titlePost' => $data['title-post'],
             'textPost' => $data['text-post']
         ]);
-    }
+    }*/
 }
