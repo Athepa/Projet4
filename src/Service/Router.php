@@ -39,7 +39,7 @@ class Router
             $controller = new PostController($postManager, $commentManager, $this->view);
             //http://index.php?action=posts
             $currentPage = isset($this->get['page'])? $this->get['page'] : 1;
-            $controller->displayAllAction($currentPage);
+            $controller->displayAllAction((int)$currentPage);
         } elseif ($action === 'post' && isset($this->get['idPost'])) {
             $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
@@ -61,13 +61,13 @@ class Router
             //http://index.php?action=reportComment&idComment=x
             $controller->reportCommentAction((int)$this->get['idComment']);
         }
-        elseif ($action === 'AuthorAddPost' && isset($this->get['idAuthor'])){
+        /*elseif ($action === 'AuthorAddPost' && isset($this->get['idAuthor'])){
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
             $controller = new PostController($postManager, $commentManager, $this->view);
             //index.php?action=AuthorAddPost&idAuthor=X
             $controller->addPostAction((int)$this->get['idAuthor'], $this->post);
-        }
+        }*/
         else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/?action=posts>Revenir à la liste des épisodes</a>";
