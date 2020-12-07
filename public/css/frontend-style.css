@@ -106,7 +106,7 @@ nav a, footer a{
     font-family: 'exo', sans-serif;
 }
 
-.post-link , #send{
+.post-link , #send, #sbmt-author-connect{
     display: block;
     text-decoration: none;
     border: 1px rgb(240,128,128) solid;
@@ -118,6 +118,10 @@ nav a, footer a{
     font-family: 'exo', sans-serif;
     transition: transform 500ms ease-in-out;
     cursor: pointer;
+}
+
+#send, #sbmt-author-connect{
+    padding: 0.5rem;
 }
 
 .post-link{
@@ -132,7 +136,7 @@ nav a, footer a{
     
 }
 
-.post-link:hover, .post-link a:hover,#send:hover {
+.post-link:hover, .post-link a:hover,#send:hover, #sbmt-author-connect:hover {
     color: whitesmoke;
     background-color: rgb(240,128,128);
     transform: scale(1.4);
@@ -202,7 +206,7 @@ nav a, footer a{
     padding: 1rem;
 }
 
-.comments-form{    
+.comments-form, .author-connection{    
     padding: 1rem;
     border: 2px whitesmoke solid;
     border-radius: 10px;
@@ -290,12 +294,38 @@ p{
 }
 
 footer{
+    display: flex;
+    justify-content: space-around;
     background-color: rgb(205,92,92);
     width: 100%;
     color: whitesmoke;    
 }
 
-.bottom-page{
+.author-connection{
+    margin-top: 20em;
+    margin-bottom: 18em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(205,92,92,0.7);
+}
+
+#peuso-author, #pwd-author{
+    display: block;
+    width: 99%;
+    padding: 0.5rem;
+    font-family: 'exo', sans-serif;
+    font-size: 1.25rem;
+    border: 2px whitesmoke solid;
+    border-radius: 10px;
+}
+
+.bottom-page, .connection-auteur{
     padding-left:20%;
     padding-right: 20%;
     padding-top: 2rem;

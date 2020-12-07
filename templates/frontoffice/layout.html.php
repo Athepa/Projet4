@@ -26,10 +26,10 @@
                     <h3>Plan du site</h3>
                     <p><a href="index.php">Accueil</a></p>
                     <p><a href="index.php?action=posts">Episodes</a></p>
-                <!--</div>
+                </div>
                 <div class="connection-auteur">
-                    <a href="index.php?action=authorConnect&idAuthor=$data['idAuthor']>">Je suis Jean Forteroche</a>
-                </div>-->
+                    <a href="index.php?action=authorConnectionPage">Je suis Jean Forteroche</a>
+                </div>
             </footer>        
         </body>   
 </html>

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace  App\Service;
 
-use App\Controller\Frontoffice\AuthorConnectController;
+use App\Controller\Backoffice\AuthorConnectionPageController;
 use App\Controller\Frontoffice\CommentController;
 use App\Controller\Frontoffice\HomeController;
 use App\Controller\Frontoffice\PostController;
@@ -60,6 +60,10 @@ class Router
             $controller = new CommentController($commentManager);
             //http://index.php?action=reportComment&idComment=x
             $controller->reportCommentAction((int)$this->get['idComment']);
+        } elseif ($action === 'authorConnectionPage'){
+            $controller = new AuthorConnectionPageController($this->view);
+            //http://index.php?action=authorConnectionPage
+            $controller->displayAuthorConnectionPage();
         }
         /*elseif ($action === 'AuthorAddPost' && isset($this->get['idAuthor'])){
             $postManager = new PostManager($this->database);
@@ -70,7 +74,7 @@ class Router
         }*/
         else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
-            <a href=http://localhost:8000/?action=posts>Revenir à la liste des épisodes</a>";
+            <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";
         }
     }
 }
