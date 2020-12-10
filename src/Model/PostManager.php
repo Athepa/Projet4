@@ -90,6 +90,17 @@ class PostManager
         return  null;
     }
 
+    public function showAllAuthorBoard() :?array
+    {
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost,postorder 
+        FROM posts 
+        ORDER BY postorder
+        ');
+        
+        $data = $dbrequest->fetchAll();
+        return $data;
+    }
+
     public function addPost(int $idAuthor, array $data): bool
     {
         $dbrequest = $this->database->connectDB()->prepare('INSERT INTO post (idPost, IdAuthor, titlePost, creationDate, textPost, postorder) 

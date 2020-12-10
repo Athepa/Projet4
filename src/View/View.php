@@ -19,8 +19,6 @@ class View
         ob_start();
         require_once "..\\templates\\backoffice\\${data['template']}.html.php";
         $content = ob_get_clean();
-        require_once '..\templates\frontoffice\layout.html.php';
+        require_once '..\templates\backoffice\layoutBackoffice.html.php';
     }
 }
-
-

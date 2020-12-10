@@ -1,0 +1,90 @@
+@font-face{
+	font-family: 'exo';
+	src:url('..//fonts/Exo2-Regular.otf') format('opentype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face{
+	font-family: 'exobold';
+	src:url('..//fonts/Exo2-Bold.otf') format('opentype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face{
+	font-family: 'exolight';
+	src:url('..//fonts/Exo2-ExtraLightItalic.otf') format('opentype');
+	font-style: italic;
+	font-weight: normal;
+}
+.posts-list h2{
+    font-family: 'exobold', sans-serif;
+    color: whitesmoke;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.episodes-list, .reported-comments{
+    color: whitesmoke;
+    font-family:'exo', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+    border-top: 2px whitesmoke solid;
+    border-bottom: 2px whitesmoke solid;
+}
+
+.episode-title, .read, .update, .delete{    
+    color: whitesmoke;
+    padding: 0.25rem;   
+}
+
+.episode-title{
+    font-family: 'exo', sans-serif;
+    font-size: 1.5rem;
+    width: 60%;
+}
+
+.read, .update, .delete{
+    font-family: 'exolight', sans-serif;
+    font-size: 1.2rem;
+    width: 10%;
+}
+
+.create{
+    
+    color: whitesmoke;
+    text-align: end;
+}
+
+.create i{
+    font-size: 2rem;
+    padding-right: 0.5rem;
+}
+
+.create span{
+    font-family: 'exolight', sans-serif;
+    font-size: 1.2rem;
+}
+
+.rported-cmt-date{
+    font-family: 'exolight';
+    color: whitesmoke;
+    font-size: 0.75rem;
+}
+
+.rprted-cmt-txt{
+    font-family: 'exo', sans-serif;
+    font-size: 1.2rem;
+    color: whitesmoke;
+}
+
+.validate, .delete-cmt{
+    font-family: 'exolight', sans-serif;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    width: 20%;
+}
+
