@@ -58,6 +58,11 @@
     text-align: end;
 }
 
+.create a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 .create i{
     font-size: 2rem;
     padding-right: 0.5rem;
@@ -86,5 +91,47 @@
     color: whitesmoke;
     font-size: 1.2rem;
     width: 20%;
+}
+
+.add-episode{
+    margin-top: 13rem;
+    width: 60%;
+    padding: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(205,92,92,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-episode h3{
+    font-family:'exobold', sans-serif ;
+    font-size: 2rem;
+    color: whitesmoke;
+}
+
+.post-form{
+    width: 90%;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#title-post, #post-order, #text-post{
+    display: block;
+    width: 100%;
+    border: 2px whitesmoke solid;
+    border-radius: 10px;
+}
+
+#title-post, #post-order{
+    height: 1.5rem;
+}
+
+#text-post{
+    height: 10rem;
 }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace  App\Service;
 
+use App\Controller\Backoffice\AuthorAddPostController;
 use App\Controller\Backoffice\AuthorBoardController;
 use App\Controller\Backoffice\AuthorConnectionPageController;
 use App\Controller\Frontoffice\CommentController;
@@ -71,15 +72,11 @@ class Router
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
             //http://index.php?action=authorBoard
             $controller->displayAuthorBoard();
-        }
-        /*elseif ($action === 'AuthorAddPost' && isset($this->get['idAuthor'])){
-            $postManager = new PostManager($this->database);
-            $commentManager = new CommentManager($this->database);
-            $controller = new PostController($postManager, $commentManager, $this->view);
-            //index.php?action=AuthorAddPost&idAuthor=X
-            $controller->addPostAction((int)$this->get['idAuthor'], $this->post);
-        }*/
-        else {
+        } elseif ($action === 'authorAddPost') {
+            $controller = new AuthorAddPostController($this->view);
+            //http://index.php?action=authorAddPost
+            $controller->authorAddPostDisplay();
+        } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";
         }

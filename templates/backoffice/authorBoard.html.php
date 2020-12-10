@@ -1,7 +1,7 @@
 <section class="posts-list">
     <h2>Jean Forteroche, bienvenue sur votre tableau de bord</h2>
     <p class="episodes-list">Listes des épisodes publiés</p>
-    <p class="create"><i class="fas fa-plus-circle"></i><span>Ajouter un épisode</span></p>
+    <p class="create"><a href="index.php?action=authorAddPost"><i class="fas fa-plus-circle"></i><span>Ajouter un épisode</span></a></p>
     
     <?php foreach($data['allposts'] as $post): ?> 
         <table>
