@@ -76,6 +76,12 @@ class Router
             $controller = new AuthorAddPostController($this->view);
             //http://index.php?action=authorAddPost
             $controller->authorAddPostDisplay();
+        } elseif ($action === 'savePost' && isset($this->get['idAuthor'])) {
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new PostController($postManager, $commentManager, $this->view);
+            //http://index.php?action=savePost
+            $controller->savePostAction((int)$this->get['idAuthor'], $this->post);
         } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";
