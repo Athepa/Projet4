@@ -42,11 +42,11 @@ main{
 }
 
 nav{
-   position: fixed;
+   /*position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-    z-index: 200;
+    z-index: 200;*/
     background-color: rgb(205,92,92);
 	display: flex;
 	justify-content: space-around;

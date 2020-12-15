@@ -14,6 +14,7 @@ use App\Model\CommentManager;
 use App\Model\PostManager;
 use App\Service\Database;
 use App\View\View;
+use App\Service\Http\Request;
 
 class Router
 {
@@ -21,11 +22,13 @@ class Router
     private View $view;
     private array $get;
     private array $post;
+    private Request $request;
 
     public function __construct()
     {
         $this->database = new Database();
         $this->view = new View();
+        $this->request = new Request();
 
         $this->get = $_GET;//While waiting Request Class
         $this->post = $_POST;//While waiting Request Class
@@ -63,7 +66,7 @@ class Router
             //http://index.php?action=reportComment&idComment=x
             $controller->reportCommentAction((int)$this->get['idComment']);
         } elseif ($action === 'authorConnectionPage') {
-            $controller = new AuthorConnectionPageController($this->view);
+            $controller = new AuthorConnectionPageController($this->view, $this->request);
             //http://index.php?action=authorConnectionPage
             $controller->displayAuthorConnectionPage();
         } elseif ($action === 'authorBoard') {
