@@ -20,23 +20,23 @@
 }
 .posts-list h2{
     font-family: 'exobold', sans-serif;
-    color: whitesmoke;
+    color: black;
     font-size: 3rem;
     text-align: center;
 }
 
 .episodes-list, .reported-comments{
-    color: whitesmoke;
+    color: black;
     font-family:'exo', sans-serif;
     font-size: 2rem;
     text-align: center;
     padding: 1rem;
-    border-top: 2px whitesmoke solid;
-    border-bottom: 2px whitesmoke solid;
+    border-top: 2px black solid;
+    border-bottom: 2px black solid;
 }
 
 .episode-title, .read, .update, .delete{    
-    color: whitesmoke;
+    color: black;
     padding: 0.25rem;   
 }
 
@@ -54,13 +54,13 @@
 
 .create{
     
-    color: whitesmoke;
+    color: black;
     text-align: end;
 }
 
 .create a{
     text-decoration: none;
-    color: whitesmoke;
+    color: black;
 }
 
 .create i{
@@ -75,20 +75,20 @@
 
 .rported-cmt-date{
     font-family: 'exolight';
-    color: whitesmoke;
+    color: black;
     font-size: 0.75rem;
 }
 
 .rprted-cmt-txt{
     font-family: 'exo', sans-serif;
     font-size: 1.2rem;
-    color: whitesmoke;
+    color: black;
 }
 
 .validate, .delete-cmt{
     font-family: 'exolight', sans-serif;
     text-align: center;
-    color: whitesmoke;
+    color: black;
     font-size: 1.2rem;
     width: 20%;
 }
@@ -108,7 +108,7 @@
 .add-episode h3{
     font-family:'exobold', sans-serif ;
     font-size: 2rem;
-    color: whitesmoke;
+    color:black;
 }
 
 .post-form{
@@ -123,7 +123,7 @@
 #title-post, #post-order, #text-post{
     display: block;
     width: 100%;
-    border: 2px whitesmoke solid;
+    border: 2px black solid;
     border-radius: 10px;
 }
 

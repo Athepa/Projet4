@@ -75,16 +75,22 @@ class Router
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
             //http://index.php?action=authorBoard
             $controller->displayAuthorBoard();
+        } elseif ($action === 'reportedCommentsBoard'){
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
+            //http://index.php?action=reportedCommentsBoard
+            $controller->displayReportedCommentsList();
         } elseif ($action === 'authorAddPost') {
-            $controller = new AuthorAddPostController($this->view);
+            $postManager = new PostManager($this->database);
+            $controller = new AuthorAddPostController($this->view, $postManager, $this->request);
             //http://index.php?action=authorAddPost
             $controller->authorAddPostDisplay();
         } elseif ($action === 'savePost' && isset($this->get['idAuthor'])) {
             $postManager = new PostManager($this->database);
-            $commentManager = new CommentManager($this->database);
-            $controller = new PostController($postManager, $commentManager, $this->view);
-            //http://index.php?action=savePost
-            $controller->savePostAction((int)$this->get['idAuthor'], $this->post);
+            $controller = new AuthorAddPostController($this->view, $postManager, $this->request);
+            //http://index.php?action=savePost&idAuthor=X
+            $controller->savePostAction((int)$this->get['idAuthor'],(array)$this->request->getPost());
         } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";

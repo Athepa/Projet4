@@ -64,10 +64,4 @@ class PostController
         }
     }
 
-    public function savePostAction(int $idAuthor, array $data): void
-    {
-        $this->postManager->addPost($idAuthor, $data);
-        header('location: index.php?action=authorBoard');
-        exit();
-    }
 }

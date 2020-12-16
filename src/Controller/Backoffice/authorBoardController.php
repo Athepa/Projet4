@@ -21,13 +21,23 @@ class AuthorBoardController
 
     public function displayAuthorBoard(): void
     {
-        $data = $this->postManager->showAllAuthorBoard();
-        $dataComments = $this->commentManager->reportedComments();
+        $data = $this->postManager->showAllAuthorBoard();        
 
         if ($data !== null) {
-            $this->view->renderBackOffice(['template' => 'authorBoard', 'allposts' => $data, 'comments'=> $dataComments]);
+            $this->view->renderBackOffice(['template' => 'authorBoard', 'allposts' => $data]);
         } elseif ($data === null) {
             echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
+        }
+    }
+
+    public function displayReportedCommentsList():void
+    {
+        $dataComments = $this->commentManager->reportedComments();
+
+        if ($dataComments !== null) {
+            $this->view->renderBackOffice(['template' => 'reportedCommentsBoard', 'comments'=> $dataComments]);
+        } elseif ($dataComments === null) {
+            echo '<h1>Il n\'y a plus de commentaires signalés </h1>';
         }
     }
 }
