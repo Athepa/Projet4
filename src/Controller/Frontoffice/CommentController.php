@@ -32,4 +32,11 @@ class CommentController
         header('location: index.php?action=post&idPost='.$idPost);
         exit();
     }
+
+    public function deleteCommentAction(int $idComment): void
+    {
+        $this->commentManager->deleteComment($idComment);
+        header('location:index.php?action=reportedCommentsBoard');
+        exit();
+    }
 }

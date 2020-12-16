@@ -41,6 +41,12 @@ class CommentManager
         ]);
     }
 
+    public function deleteComment(int $idComment): void
+    {
+        $dbrequest = $this->database->connectDB()->prepare('DELETE FROM comments  WHERE idComment = :idComment');
+        $dbrequest->execute(['idComment'=>$idComment]);
+    }
+
     public function findPostId(int $idComment): int
     {
         $dbrequest = $this->database->connectDB()->prepare('SELECT idPost

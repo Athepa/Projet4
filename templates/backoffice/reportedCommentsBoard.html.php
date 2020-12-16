@@ -12,7 +12,7 @@
                     <p>Valider le commentaire</p>
                 </td>
                 <td class="delete-cmt">
-                    <p>Modérer le commentaire</p>
+                    <p><a href="index.php?action=deleteComment&idComment=<?=$comments['idComment']?>">Modérer le commentaire</a></p>
                 </td>
             </tr>
         </table>            
