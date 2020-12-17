@@ -18,6 +18,52 @@
 	font-style: italic;
 	font-weight: normal;
 }
+
+header h2{
+    width: 90%;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 'exobold', sans-serif;
+}
+
+.desc-board{
+    font-family: 'exolight', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.main-div{
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    padding-top: 5rem;
+}
+
+.menu-navigation{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.2rem;
+}
+
+.menu-navigation a{
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    width: 100%;
+    color: black;
+    font-family:'exo', sans-serif;
+    border-top: 2px black solid;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.menu-navigation a:hover{
+    background-color: black;
+    color: whitesmoke;
+}
+
+main{
+    width: 60%;
+}
 .posts-list h2{
     font-family: 'exobold', sans-serif;
     color: black;
@@ -63,6 +109,10 @@
     color: black;
 }
 
+.create a:hover{
+    text-decoration: underline;
+}
+
 .create i{
     font-size: 2rem;
     padding-right: 0.5rem;
@@ -71,6 +121,16 @@
 .create span{
     font-family: 'exolight', sans-serif;
     font-size: 1.2rem;
+}
+
+.rprtd-cmt-cel{
+    width: 40%;
+    text-align: justify;
+}
+
+.post-id-cel{
+    width: 15%;
+    text-align: center;
 }
 
 .rported-cmt-date{
@@ -86,20 +146,27 @@
 }
 
 .validate, .delete-cmt{
+    width: 28%;
+}
+
+.validate a, .delete-cmt a{
     font-family: 'exolight', sans-serif;
     text-align: center;
     color: black;
-    font-size: 1.2rem;
-    width: 20%;
+    font-size: 1.2rem;    
+    text-decoration: none;
+}
+
+.validate a:hover, .delete-cmt a:hover{
+    text-decoration: underline;
 }
 
 .add-episode{
-    margin-top: 13rem;
+    margin-top: 3rem;
     width: 60%;
     padding: 1.5rem;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(205,92,92,0.7);
     display: flex;
     flex-direction: column;
     align-items: center;

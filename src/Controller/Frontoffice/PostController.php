@@ -63,5 +63,4 @@ class PostController
             echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
         }
     }
-
 }

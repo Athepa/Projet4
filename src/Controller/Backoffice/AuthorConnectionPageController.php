@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace  App\Controller\Backoffice;
 
-use App\View\View;
 use App\Service\Http\Request;
+use App\View\View;
 
 class AuthorConnectionPageController
 {
@@ -20,7 +20,7 @@ class AuthorConnectionPageController
 
     public function displayAuthorConnectionPage(): void
     {
-        if($this->request->getPost() !== null){
+        if ($this->request->getPost() !== null) {
             header('location:index.php?action=authorBoard');
             exit;
         }

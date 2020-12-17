@@ -8,18 +8,21 @@
         <title>Blog</title>
     </head>
         <body>
-            <nav> 
-                <div class="logo-blog">
-                    <a href="index.php"> Retourner sur le blog</a>
-                </div> 
-                <div class="menu-navigation">       
-                    <a href="index.php?action=authorBoard">Les épisodes publiés</a>
-                    <a href="index.php?action=reportedCommentsBoard">Les commentaires signalés</a>
-                </div> 
-            </nav>        
-
-            <main>
-                <?=$content?>
-            </main>        
+            <header>
+                <h2>Jean Forteroche, bienvenue sur votre tableau de bord</h2>
+                <p class="desc-board">Ici, vous pouvez ajouter, consulter, modifier ou supprimer un épisode. Vous pouvez également valider ou modérer un commentaire qui a été signalé.</p>
+            </header>
+            <div class="main-div">
+                <nav>                
+                    <div class="menu-navigation"> 
+                        <a href="index.php"> Retourner sur le blog</a>      
+                        <a href="index.php?action=authorBoard">Les épisodes publiés</a>
+                        <a href="index.php?action=reportedCommentsBoard">Les commentaires signalés</a>
+                    </div> 
+                </nav>
+                <main>
+                    <?=$content?>
+                </main>
+            </div>                  
         </body>   
 </html>

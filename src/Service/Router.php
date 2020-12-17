@@ -13,8 +13,8 @@ use App\Controller\Frontoffice\PostController;
 use App\Model\CommentManager;
 use App\Model\PostManager;
 use App\Service\Database;
-use App\View\View;
 use App\Service\Http\Request;
+use App\View\View;
 
 class Router
 {
@@ -65,18 +65,17 @@ class Router
             $controller = new CommentController($commentManager);
             //http://index.php?action=reportComment&idComment=x
             $controller->reportCommentAction((int)$this->get['idComment']);
-        } elseif($action === 'deleteComment' && isset($this->get['idComment'])){
+        } elseif ($action === 'deleteComment' && isset($this->get['idComment'])) {
             $commentManager = new CommentManager($this->database);
             $controller = new CommentController($commentManager);
             //index.php?action=deleteComment&idComment=X
-            $controller->deleteCommentAction((int)$this->get['idComment']); 
-        } elseif($action === 'validateComment' && isset($this->get['idComment'])){
+            $controller->deleteCommentAction((int)$this->get['idComment']);
+        } elseif ($action === 'validateComment' && isset($this->get['idComment'])) {
             $commentManager = new CommentManager($this->database);
             $controller = new CommentController($commentManager);
             //index.php?action=validateComment&idComment=X
             $controller->validateCommentAction((int)$this->get['idComment']);
-        }
-         elseif ($action === 'authorConnectionPage') {
+        } elseif ($action === 'authorConnectionPage') {
             $controller = new AuthorConnectionPageController($this->view, $this->request);
             //http://index.php?action=authorConnectionPage
             $controller->displayAuthorConnectionPage();
@@ -86,7 +85,7 @@ class Router
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
             //http://index.php?action=authorBoard
             $controller->displayAuthorBoard();
-        } elseif ($action === 'reportedCommentsBoard'){
+        } elseif ($action === 'reportedCommentsBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
@@ -101,7 +100,7 @@ class Router
             $postManager = new PostManager($this->database);
             $controller = new AuthorAddPostController($this->view, $postManager, $this->request);
             //http://index.php?action=savePost&idAuthor=X
-            $controller->savePostAction((int)$this->get['idAuthor'],(array)$this->request->getPost());
+            $controller->savePostAction((int)$this->get['idAuthor'], (array)$this->request->getPost());
         } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";

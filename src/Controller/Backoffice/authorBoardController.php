@@ -21,7 +21,7 @@ class AuthorBoardController
 
     public function displayAuthorBoard(): void
     {
-        $data = $this->postManager->showAllAuthorBoard();        
+        $data = $this->postManager->showAllAuthorBoard();
 
         if ($data !== null) {
             $this->view->renderBackOffice(['template' => 'authorBoard', 'allposts' => $data]);
