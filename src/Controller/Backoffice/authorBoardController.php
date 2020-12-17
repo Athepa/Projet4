@@ -33,11 +33,12 @@ class AuthorBoardController
     public function displayReportedCommentsList():void
     {
         $dataComments = $this->commentManager->reportedComments();
+        $dataPost = $this->postManager->showAllAuthorBoard();
 
         if ($dataComments !== null) {
-            $this->view->renderBackOffice(['template' => 'reportedCommentsBoard', 'comments'=> $dataComments]);
+            $this->view->renderBackOffice(['template' => 'reportedCommentsBoard', 'allposts' => $dataPost,'comments'=> $dataComments]);
         } elseif ($dataComments === null) {
-            echo '<h1>Il n\'y a plus de commentaires signalés </h1>';
+            echo '<h1>Il n\'y a plus de commentaires signalés. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
         }
     }
 }

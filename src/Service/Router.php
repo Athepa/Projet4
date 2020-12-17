@@ -69,8 +69,14 @@ class Router
             $commentManager = new CommentManager($this->database);
             $controller = new CommentController($commentManager);
             //index.php?action=deleteComment&idComment=X
-            $controller->deleteCommentAction((int)$this->get['idComment']);
-        } elseif ($action === 'authorConnectionPage') {
+            $controller->deleteCommentAction((int)$this->get['idComment']); 
+        } elseif($action === 'validateComment' && isset($this->get['idComment'])){
+            $commentManager = new CommentManager($this->database);
+            $controller = new CommentController($commentManager);
+            //index.php?action=validateComment&idComment=X
+            $controller->validateCommentAction((int)$this->get['idComment']);
+        }
+         elseif ($action === 'authorConnectionPage') {
             $controller = new AuthorConnectionPageController($this->view, $this->request);
             //http://index.php?action=authorConnectionPage
             $controller->displayAuthorConnectionPage();

@@ -67,6 +67,14 @@ class CommentManager
         $dbrequest->execute(['idComment'=>$idComment]);
     }
 
+    public function validateComment(int $idComment) : void
+    {
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE comments SET report = 2
+        WHERE idComment = :idComment
+        ');
+        $dbrequest->execute(['idComment'=>$idComment]);
+    }
+
     public function reportedComments(): ?array
     {
         $dbrequest = $this->database->connectDB()->prepare('SELECT idComment,idPost, pseudoUser, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, commentText,report  
@@ -77,13 +85,5 @@ class CommentManager
         $dbrequest->execute();
         $data = $dbrequest->fetchAll();
         return $data;
-    }
-
-    public function validateComment(int $idComment) : void
-    {
-        $dbrequest = $this->database->connectDB()->prepare('UPDATE comments SET report = 2
-        WHERE idComment = :idComment
-        ');
-        $dbrequest->execute(['idcomment'=>$idComment]);
     }
 }

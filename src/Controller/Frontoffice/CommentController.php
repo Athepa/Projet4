@@ -39,4 +39,11 @@ class CommentController
         header('location:index.php?action=reportedCommentsBoard');
         exit();
     }
+
+    public function validateCommentAction(int $idComment): void
+    {
+        $this->commentManager->validateComment($idComment);
+        header('location:index.php?action=reportedCommentsBoard');
+        exit();
+    }
 }
