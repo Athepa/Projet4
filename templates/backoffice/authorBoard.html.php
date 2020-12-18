@@ -10,7 +10,7 @@
                     <p ><?=$post['titlePost']?></p>
                 </td>
                 <td class="read">
-                    <p>Consulter</p>
+                    <p><a href="index.php?action=post&idPost=<?=$post['idPost']?>"> Consulter</a></p>
                 </td>
                 <td class="update">
                     <p>Modifier</p>
