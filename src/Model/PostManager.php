@@ -103,8 +103,8 @@ class PostManager
 
     public function addPost(int $idAuthor, array $data): bool
     {
-        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO posts (idPost, IdAuthor, titlePost, creationDate, textPost, postorder) 
-        VALUES (:titlePost, NOW(), :textPost, :postorder)
+        $dbrequest = $this->database->connectDB()->prepare('INSERT INTO posts (IdAuthor, titlePost, creationDate, textPost, postorder) 
+        VALUES (:idAuthor,:titlePost, NOW(), :textPost, :postorder)
         ');
         return $dbrequest->execute([
             'idAuthor' => $idAuthor,

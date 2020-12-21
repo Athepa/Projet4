@@ -9,7 +9,7 @@
                     <p class="rprted-cmt-txt"><?=$comments['commentText']?></p>
                 </td>
                 <td class="post-id-cel"> 
-                    <p class="post-title"><?=$comments['idPost']?></p>
+                    <p class="post-title"><?=$comments['postorder']?></p>
                 </td>
                 <td class="validate">
                     <p><a href="index.php?action=validateComment&idComment=<?=$comments['idComment']?>">Valider le commentaire</a></p>

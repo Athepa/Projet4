@@ -77,9 +77,10 @@ class CommentManager
 
     public function reportedComments(): ?array
     {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idComment,idPost, pseudoUser, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, commentText,report  
-        FROM comments
-        WHERE report = 1
+        $dbrequest = $this->database->connectDB()->prepare('SELECT com.idComment,com.idPost, com.pseudoUser, DATE_FORMAT(com.creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, com.commentText,com.report,ep.postorder 
+        FROM comments com
+        INNER JOIN posts ep ON ep.idPost = com.idPost
+        WHERE com.report = 1
         ');
 
         $dbrequest->execute();
