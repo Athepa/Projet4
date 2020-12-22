@@ -36,7 +36,7 @@ class Router
 
     public function run(): void
     {
-        $action = isset($this->get['action']) ? $this->get['action'] : 'home';
+        $action = $this->request->getAction();
 
         if ($action === 'posts') {
             $commentManager = new CommentManager($this->database);
@@ -45,12 +45,12 @@ class Router
             //http://index.php?action=posts
             $currentPage = isset($this->get['page'])? $this->get['page'] : 1;
             $controller->displayAllAction((int)$currentPage);
-        } elseif ($action === 'post' && isset($this->get['idPost'])) {
+        } elseif ($action === 'post') {
             $commentManager = new CommentManager($this->database);
             $postManager = new PostManager($this->database);
             $controller = new PostController($postManager, $commentManager, $this->view);
             //http://index.php?action=post&idPost=X
-            $controller->displayOneAction((int)$this->get['idPost']);
+            $controller->displayOneAction((int)$this->request->getIdPost());
         } elseif ($action === 'home') {
             $controller = new HomeController($this->view);
             //http://index.php

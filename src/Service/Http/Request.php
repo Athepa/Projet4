@@ -22,7 +22,8 @@ class Request
 
     public function getAction(): string
     {
-        return (string)$this->get['action'];
+        return isset($this->get['action']) ? $this->get['action'] : 'home';
+        //return (string)$this->get['action'];
     }
 
     public function getPage(): int
