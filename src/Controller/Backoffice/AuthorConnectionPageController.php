@@ -24,6 +24,6 @@ class AuthorConnectionPageController
             header('location:index.php?action=authorBoard');
             exit;
         }
-        $this->view->renderBackOffice(['template' => 'authorConnectionPage']);
+        $this->view->render(['template' => 'authorConnectionPage']);
     }
 }
