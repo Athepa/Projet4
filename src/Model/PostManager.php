@@ -17,7 +17,8 @@ class PostManager
 
     public function showAll() : ?array
     {
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
+         titlePost, textPost, postorder, published
         FROM posts 
         ORDER BY postorder ');
         
@@ -36,8 +37,10 @@ class PostManager
     {
         $limitNb =  ($currentPage -1)* $numberOfPostsPerPage;
         
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
-        FROM posts 
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, 
+        titlePost, textPost, postorder, published 
+        FROM posts
+        WHERE published = 1 
         ORDER BY postorder LIMIT :limitNumber, :numberOfPostsPerPage ');
         $dbrequest->bindValue(':numberOfPostsPerPage', $numberOfPostsPerPage, \PDO::PARAM_INT);
         $dbrequest->bindValue(':limitNumber', $limitNb, \PDO::PARAM_INT);
@@ -48,7 +51,8 @@ class PostManager
   
     public function showOne(int $id): ?array
     {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost, postorder 
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, 
+        titlePost, textPost, postorder, published
         FROM posts
         WHERE idPost=:id
         ');
@@ -92,8 +96,23 @@ class PostManager
 
     public function showAllAuthorBoard() :?array
     {
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, titlePost, textPost,postorder 
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
+         titlePost, textPost,postorder, published
         FROM posts 
+        WHERE published = 1
+        ORDER BY postorder
+        ');
+        
+        $data = $dbrequest->fetchAll();
+        return $data;
+    }
+
+    public function showPendingEpisodes(): ?array
+    {
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
+         titlePost, textPost,postorder, published
+        FROM posts 
+        WHERE published = 0
         ORDER BY postorder
         ');
         
@@ -112,6 +131,12 @@ class PostManager
             'textPost' => $data['text-post'],
             'postorder' => $data['post-order']
             ]);
+    }
+
+    public function deletePost(int $idPost): void
+    {
+        $dbrequest = $this->database->connectDB()->prepare('DELETE FROM posts  WHERE idPost = :idPost');
+        $dbrequest->execute(['idPost'=>$idPost]);
     }
 
     /*public function updatePost(int $idPost, array $data) : bool

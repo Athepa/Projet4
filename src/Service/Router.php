@@ -82,25 +82,40 @@ class Router
         } elseif ($action === 'authorBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view,$this->request);
             //http://index.php?action=authorBoard
             $controller->displayAuthorBoard();
         } elseif ($action === 'reportedCommentsBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
             //http://index.php?action=reportedCommentsBoard
             $controller->displayReportedCommentsList();
+        } elseif($action === 'pendingEpisodes'){
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            //http://index.php?action=pendingEpisodes
+            $controller->displayPendingEpisodes();
         } elseif ($action === 'authorAddPost') {
             $postManager = new PostManager($this->database);
-            $controller = new AuthorAddPostController($this->view, $postManager, $this->request);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
             //http://index.php?action=authorAddPost
             $controller->authorAddPostDisplay();
         } elseif ($action === 'savePost' && isset($this->get['idAuthor'])) {
             $postManager = new PostManager($this->database);
-            $controller = new AuthorAddPostController($this->view, $postManager, $this->request);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
             //http://index.php?action=savePost&idAuthor=X
             $controller->savePostAction((int)$this->get['idAuthor'], (array)$this->request->getPost());
+        } elseif ($action === 'deletePost' && isset($this->get['idPost'])) {
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            //http://index.php?action=deletePost
+            $controller->deletePostAction((int)$this->get['idPost']);
+            
         } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";

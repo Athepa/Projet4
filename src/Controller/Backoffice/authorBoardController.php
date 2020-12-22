@@ -7,16 +7,18 @@ namespace  App\Controller\Backoffice;
 use App\Model\CommentManager;
 use App\Model\PostManager;
 use App\View\View;
+use App\Service\Http\Request;
 
 class AuthorBoardController
 {
     private View $view;
 
-    public function __construct(PostManager $postManager, CommentManager $commentManager, View $view)
+    public function __construct(PostManager $postManager, CommentManager $commentManager, View $view, Request $request)
     {
         $this->postManager = $postManager;
         $this->commentManager = $commentManager;
         $this->view = $view;
+        $this->request = $request;
     }
 
     public function displayAuthorBoard(): void
@@ -30,6 +32,40 @@ class AuthorBoardController
         }
     }
 
+    public function displayPendingEpisodes(): void
+    {
+        $data = $this->postManager->showPendingEpisodes();
+
+        if($data!== null){
+            $this->view->renderBackOffice(['template'=> 'pendingEpisodes', 'allposts' => $data]);
+        } elseif ($data === null) {
+            echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
+        }
+    }
+
+    public function authorAddPostDisplay(): void
+    {
+        $this->view->renderBackOffice(['template' => 'authorAddPost']);
+    }
+
+    public function savePostAction(int $idAuthor, $data): void
+    {
+        if ($this->request->getPost()!==null) {
+            $this->postManager->addPost($idAuthor, $data);
+            header('location: index.php?action=authorBoard');
+            exit();
+        }
+    }
+
+    public function deletePostAction(int $idPost): void
+    {
+        $this->postManager->deletePost($idPost);
+        header('location: index.php?action=authorBoard');
+        exit();
+    }
+
+
+
     public function displayReportedCommentsList():void
     {
         $dataComments = $this->commentManager->reportedComments();
@@ -41,4 +77,8 @@ class AuthorBoardController
             echo '<h1>Il n\'y a plus de commentaires signalés. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
         }
     }
+
+    
+
+
 }

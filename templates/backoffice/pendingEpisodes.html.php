@@ -1,8 +1,7 @@
 <section class="posts-list">
     
-    <p class="episodes-list">Listes des épisodes publiés</p>
-    <p class="create"><a href="index.php?action=authorAddPost"><i class="fas fa-plus-circle"></i><span>Ajouter un épisode</span></a></p>
-    
+    <p class="episodes-list">Listes des épisodes en attente de publication</p>
+        
     <?php foreach($data['allposts'] as $post): ?> 
         <table>
             <tr>
@@ -10,7 +9,7 @@
                     <p ><?=$post['titlePost']?></p>
                 </td>
                 <td class="read">
-                    <p><a href="index.php?action=post&idPost=<?=$post['idPost']?>"> Consulter</a></p>
+                    <p><a href="index.php?action=post&idPost=<?=$post['idPost']?>"> Publier</a></p>
                 </td>
                 <td class="update">
                     <p>Modifier</p>

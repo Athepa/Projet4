@@ -36,6 +36,7 @@ class Request
         return (int)$this->get['idPost'];
     }
 
+
     public function getIdComment(): int
     {
         return (int)$this->get['idComment'];

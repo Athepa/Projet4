@@ -15,7 +15,7 @@
                     <p><a href="index.php?action=validateComment&idComment=<?=$comments['idComment']?>">Valider le commentaire</a></p>
                 </td>
                 <td class="delete-cmt">
-                    <p><a href="index.php?action=deleteComment&idComment=<?=$comments['idComment']?>">Modérer le commentaire</a></p>
+                    <p><a href="index.php?action=deleteComment&idComment=<?=$comments['idComment']?>">Supprimer le commentaire</a></p>
                 </td>
             </tr>
         </table>            
