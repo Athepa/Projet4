@@ -17,6 +17,7 @@
                     <div class="menu-navigation"> 
                         <a href="index.php"> Retourner sur le blog</a>      
                         <a href="index.php?action=authorBoard">Les épisodes publiés</a>
+                        <!--<a href="">Les épisodes en attente de publication</a>-->
                         <a href="index.php?action=reportedCommentsBoard">Les commentaires signalés</a>
                     </div> 
                 </nav>
