@@ -6,13 +6,13 @@
         <table>
             <tr>
                 <td class="episode-title">   
-                    <p ><?=$post['titlePost']?></p>
+                    <p ><?=htmlspecialchars($post['titlePost'])?></p>
                 </td>
                 <td class="read">
-                    <p><a href="index.php?action=post&idPost=<?=$post['idPost']?>"> Publier</a></p>
+                    <p><a href="index.php?action=publishPost&idPost=<?=$post['idPost']?>"> Publier</a></p>
                 </td>
                 <td class="update">
-                    <p>Modifier</p>
+                    <p><a href="index.php?action=updatingPost&idPost=<?=$post['idPost']?>"> Modifier</a></p>
                 </td>
                 <td class="delete">
                     <p><a href="index.php?action=deletePost&idPost=<?=$post['idPost']?>">Supprimer</a></p>

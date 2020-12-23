@@ -133,6 +133,14 @@ class PostManager
             ]);
     }
 
+    public function publishPost(int $idPost) : void
+    {
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET published = 1
+        WHERE idPost = :idPost
+        ');
+        $dbrequest->execute(['idPost'=>$idPost]);
+    }
+
     
 
     public function deletePost(int $idPost): void
@@ -141,16 +149,19 @@ class PostManager
         $dbrequest->execute(['idPost'=>$idPost]);
     }
 
-    /*public function updatePost(int $idPost, array $data) : bool
+    public function updatedPost(int $idPost, array $data) : array
     {
-        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET titlePost, textPost
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET idPost, titlePost, textPost
         WHERE idPost = :idPost,
         titlePost = :titlePost,
         textPost = :textPost
         ');
-        return $dbrequest->execute(['idPost'=>$idPost,
+        $data=$dbrequest->execute([
+            'idPost'=>$idPost,
             'titlePost' => $data['title-post'],
             'textPost' => $data['text-post']
         ]);
-    }*/
+
+        return (array)$data;
+    }
 }

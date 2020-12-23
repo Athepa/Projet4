@@ -113,10 +113,28 @@ class Router
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
-            //http://index.php?action=deletePost
-            $controller->deletePostAction((int)$this->get['idPost']);
-            
-        } else {
+            //http://index.php?action=deletePost&idPost=X
+            $controller->deletePostAction((int)$this->get['idPost']);            
+        } elseif($action === 'publishPost' && isset($this->get['idPost'])){
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            //http://index.php?action=publishPost&idPost=X
+            $controller->publishPostAction((int)$this->get['idPost']);
+        } elseif($action === 'updatingPost' && isset($this->get['idPost'])){
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            //http://index.php?action=updatingPost&idPost=X
+            $controller->updatingPostAction((int)$this->get['idPost']);
+        } /*elseif($action === 'updatedPost' && isset($this->get['idPost'])){
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            //http://index.php?action=updatedPost&idPost=X
+            $controller->updatedPostAction((int)$this->get['idPost'], (array)$this->request->getPost());
+        }*/
+        else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";
         }

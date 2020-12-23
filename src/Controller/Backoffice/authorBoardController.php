@@ -64,7 +64,29 @@ class AuthorBoardController
         exit();
     }
 
+    public function publishPostAction(int $idPost): void
+    {
+        $this->postManager->publishPost($idPost);
+        header('location: index.php?action=pendingEpisodes');
+        exit();
+    }
 
+    public function updatingPostAction(int $idPost): void
+    {
+        $dataToUpdate = $this->postManager->showOne($idPost);
+        if($dataToUpdate !==null){
+            $this->view->renderBackOffice(['template'=>'authorUpdatePost', 'postToUpdate' =>$dataToUpdate]);
+        } elseif ($dataToUpdate === null) {
+            echo '<h1>Il n\'y a plus de commentaires signalés. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
+        }    
+    }
+
+    /*public function updatedPostAction(int $idPost, $data): void
+    {
+        $this->postManager->updatePost($idPost, $data);
+        header('location: index.php?action=pendingEpisodes');
+        exit();
+    }*/
 
     public function displayReportedCommentsList():void
     {
