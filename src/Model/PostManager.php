@@ -133,6 +133,8 @@ class PostManager
             ]);
     }
 
+    
+
     public function deletePost(int $idPost): void
     {
         $dbrequest = $this->database->connectDB()->prepare('DELETE FROM posts  WHERE idPost = :idPost');

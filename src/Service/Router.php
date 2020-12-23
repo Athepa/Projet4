@@ -109,7 +109,7 @@ class Router
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
             //http://index.php?action=savePost&idAuthor=X
             $controller->savePostAction((int)$this->get['idAuthor'], (array)$this->request->getPost());
-        } elseif ($action === 'deletePost' && isset($this->get['idPost'])) {
+        } elseif ($action === 'deletePost' && isset($this->get['idPost']) ) {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);

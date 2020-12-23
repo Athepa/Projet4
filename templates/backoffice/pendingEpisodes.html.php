@@ -15,7 +15,7 @@
                     <p>Modifier</p>
                 </td>
                 <td class="delete">
-                    <p><a href="index.php?action=deletePost">Supprimer</a></p>
+                    <p><a href="index.php?action=deletePost&idPost=<?=$post['idPost']?>">Supprimer</a></p>
                 </td>    
             </tr>
         </table>          
