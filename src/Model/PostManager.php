@@ -151,7 +151,7 @@ class PostManager
 
     public function updatedPost(int $idPost, array $data) : array
     {
-        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET idPost, titlePost, textPost
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET idPost, titlePost, textPost, published=0
         WHERE idPost = :idPost,
         titlePost = :titlePost,
         textPost = :textPost

@@ -15,18 +15,11 @@ class AuthorConnectManager
         $this->database = $database;
     }
 
-    public function connectedAuthor(int $idAuthor, array $data) : bool
+    public function authorConnectionData(): array
     {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT idAuthor
-        FROM author
-        WHERE idAuthor = :idAuthor,
-        pseudoAuthor = :loginAuthor AND
-        authorPassWord = :authorPassWord
-        ');
-        return $dbrequest->execute([
-            'idAuthor'=>$idAuthor,
-            'pseudoAuthor'=>$data['peuso-author'],
-            'authorPassWord'=>$data['pwd-author']
-        ]);
+        $dbrequest= $this->database->connectDB()->query('SELECT idAuthor, loginAuthor, authorFirstName, authorName, authorPassWord
+        FROM author');
+        $data = $dbrequest->fetchAll();
+        return $data;
     }
 }

@@ -6,6 +6,7 @@ namespace  App\Controller\Frontoffice;
 
 use App\Model\CommentManager;
 use App\Model\PostManager;
+use App\Service\Http\Request;
 use App\View\View;
 
 class PostController

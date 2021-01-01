@@ -13,7 +13,7 @@
                     <p><a href="index.php?action=post&idPost=<?=$post['idPost']?>"> Consulter</a></p>
                 </td>
                 <td class="update">
-                    <p>Modifier</p>
+                    <p><a href="index.php?action=updatingPost&idPost=<?=$post['idPost']?>"> Modifier</a></p>
                 </td>
                 <td class="delete">
                     <p><a href="index.php?action=deletePost&idPost=<?=$post['idPost']?>">Supprimer</a></p>
