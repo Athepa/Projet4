@@ -23,6 +23,9 @@ class AuthorConnectionPageController
 
     public function displayAuthorConnectionPage(): void
     {
+        $getAuthorData = $this->authorConnectManager->authorConnectionData();
+        var_dump($getAuthorData);
+        die;
         if ($this->request->getData() !== null) {
             header('location:index.php?action=authorBoard');
             exit;
