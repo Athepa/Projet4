@@ -187,11 +187,17 @@ main{
     align-items: center;
 }
 
-#title-post, #post-order, #text-post{
+#title-post, #post-order, #postupdate-order, #title-postupdate{
     display: block;
     width: 100%;
     border: 2px black solid;
     border-radius: 10px;
+    height: 2em;
+}
+
+.tox-tinymce{
+    width: 100%;
+
 }
 
 #title-post, #post-order{

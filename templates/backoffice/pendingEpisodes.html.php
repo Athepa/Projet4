@@ -1,6 +1,7 @@
 <section class="posts-list">
     
     <p class="episodes-list">Listes des épisodes en attente de publication</p>
+    <p class="create"><a href="index.php?action=authorAddPost"><i class="fas fa-plus-circle"></i><span>Ajouter un épisode</span></a></p>
         
     <?php foreach($data['allposts'] as $post): ?> 
         <table>

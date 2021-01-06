@@ -17,13 +17,13 @@ class AuthorConnectManager
 
     public function authorConnectionData(): array
     {
-        $dbrequest= $this->database->connectDB()->query('SELECT loginAuthor, authorPassWord
+        $dbrequest= $this->database->connectDB()->query('SELECT *
         FROM author');
         $data = $dbrequest->fetchAll();
         return $data;
     }
 
-    public function authorInputData($data): array
+    public function authorInputData($data): bool
     {
         $dbrequest = $this->database->connectDB()->prepare('INSERT INTO author (loginAuthor, authorPassWord) 
         VALUES (:loginAuthor, :authorPassWord )
@@ -31,7 +31,6 @@ class AuthorConnectManager
         $dbrequest->execute([            
             'loginAuthor'=> $data['pseudo-author'],
             'authorPassWord' => $data['pwd-author'],            
-            ]);
-        return $data;    
+            ]);    
     }
 }

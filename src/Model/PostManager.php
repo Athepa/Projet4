@@ -149,19 +149,16 @@ class PostManager
         $dbrequest->execute(['idPost'=>$idPost]);
     }
 
-    public function updatedPost(int $idPost, array $data) : array
+    public function updatedPost(int $idPost, array $data) : bool
     {
-        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET idPost, titlePost, textPost, published=0
-        WHERE idPost = :idPost,
-        titlePost = :titlePost,
-        textPost = :textPost
+        $dbrequest = $this->database->connectDB()->prepare('UPDATE posts SET titlePost=:titlePost, textPost= :textPost, postorder = :postorder
+        WHERE idPost = :idPost        
         ');
-        $data=$dbrequest->execute([
+        return $dbrequest->execute([
             'idPost'=>$idPost,
-            'titlePost' => $data['title-post'],
-            'textPost' => $data['text-post']
+            'titlePost' => $data['title-postupdate'],
+            'postorder' =>$data['postupdate-order'],
+            'textPost' => $data['text-postupdate']
         ]);
-
-        return (array)$data;
     }
 }

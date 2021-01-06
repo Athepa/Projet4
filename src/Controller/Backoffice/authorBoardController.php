@@ -52,7 +52,7 @@ class AuthorBoardController
     {
         if ($this->request->getData()!==null) {
             $this->postManager->addPost($this->request->getIdAuthor(), $this->request->getData());
-            header('location: index.php?action=authorBoard');
+            header('location: index.php?action=pendingEpisodes');
             exit();
         }
     }
@@ -74,8 +74,6 @@ class AuthorBoardController
     public function updatingPostAction(int $idPost): void
     {
         $dataToUpdate = $this->postManager->showOne($idPost);
-        /*var_dump($idPost,$dataToUpdate['textPost']);
-        die;*/
         if ($dataToUpdate !==null) {
             $this->view->renderBackOffice(['template'=>'authorUpdatePost', 'postToUpdate' =>$dataToUpdate]);
         } elseif ($dataToUpdate === null) {
@@ -85,7 +83,8 @@ class AuthorBoardController
 
     public function updatedPostAction(int $idPost, $data): void
     {
-        $this->postManager->updatePost($idPost, $data);
+       
+        $this->postManager->updatedPost($idPost, $data);
         header('location: index.php?action=pendingEpisodes');
         exit();
     }
