@@ -4,7 +4,7 @@
     <form class="post-form" method="POST" action="index.php?action=savePost&idAuthor=1">          
         <input id="title-post" type="text" name="title-post" placeholder="Le titre de l'épisode" required/>
         <input id="post-order" type="number" name="post-order" placeholder="Le numéro de l'épisode" required/>
-        <textarea id="text-post" type="text" name="text-post" placeholder="Le texte de l'épisode" required></textarea>
+        <textarea id="text-post" type="text" name="text-post" placeholder="Le texte de l'épisode" ></textarea>
         <input type="submit" id="send"/>
     </form>
 </section>

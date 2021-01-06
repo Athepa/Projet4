@@ -50,8 +50,8 @@ class AuthorBoardController
 
     public function savePostAction(): void
     {
-        if ($this->request->getPost()!==null) {
-            $this->postManager->addPost($this->request->getIdAuthor(), $this->request->getPost());
+        if ($this->request->getData()!==null) {
+            $this->postManager->addPost($this->request->getIdAuthor(), $this->request->getData());
             header('location: index.php?action=authorBoard');
             exit();
         }
