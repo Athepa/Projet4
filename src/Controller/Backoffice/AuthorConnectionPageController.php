@@ -21,23 +21,22 @@ class AuthorConnectionPageController
         $this->request = $request;
     }
 
-    public function displayAuthorConnectionPage(): void
+    public function displayAuthorConnectionPage($data): void
     {
-        $getAuthorData = $this->authorConnectManager->authorConnectionData();
-        /*var_dump($getAuthorData);
-        die;*/
+        $this->view->render(['template' => 'authorConnectionPage']);
+
+        $storedData = $this->authorConnectManager->authorConnectionData();
+        var_dump($storedData);
+        die;
         if ($this->request->getData() !== null) {
             header('location:index.php?action=authorBoard');
             exit;
         }
-        $this->view->render(['template' => 'authorConnectionPage']);
+        
+        $enteredData = $this->authorConnectManager->authorInputData($data);
+        
+        
+        
+        
     }
-
-    /*public function authorCheckingDataAction(int $idAuthor, array $data): void
-    {
-        $getAuthorData = $this->authorConnectManager->authorConnectionData();
-        $authorEnteredData = $this->authorConnectManager->authorInputData($idAuthor, $data);
-        var_dump($authorEnteredData);
-
-    }*/
 }

@@ -80,7 +80,7 @@ class Router
             $authorConnectManager = new AuthorConnectManager($this->database);
             $controller = new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request);
             //http://index.php?action=authorConnectionPage
-            $controller->displayAuthorConnectionPage();
+            $controller->displayAuthorConnectionPage($this->request->getData());
         } elseif ($action === 'authorBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
