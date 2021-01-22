@@ -22,7 +22,7 @@ class Request
 
     public function getAuthorData(string $element): string
     {
-        return htmlspecialchars($this->post[$element]);
+        return $this->post[$element];
     }
 
     public function getAction(): string

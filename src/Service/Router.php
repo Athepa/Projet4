@@ -76,6 +76,11 @@ class Router
             $controller = new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request);
             //http://index.php?action=authorConnectionPage
             $controller->displayAuthorConnectionPage($this->request->getData());
+        } elseif ($action === 'logout') {
+            $authorConnectManager = new AuthorConnectManager($this->database);
+            $controller =new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request);
+            //http://index.php?action=logout
+            $controller->logout();
         } elseif ($action === 'authorBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);

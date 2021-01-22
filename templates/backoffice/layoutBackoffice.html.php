@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -15,7 +13,8 @@ session_start();
         <body>
             <header>
                 <h2>Jean Forteroche, bienvenue sur votre tableau de bord</h2>
-                <p class="desc-board">Ici, vous pouvez ajouter, consulter, modifier ou supprimer un épisode. Vous pouvez également valider ou modérer un commentaire qui a été signalé.</p>
+                <p class="desc-board">Ici, vous pouvez ajouter, consulter, modifier ou supprimer un épisode. Vous pouvez également valider ou 
+                    modérer un commentaire qui a été signalé.</p>
             </header>
             <div class="main-div">
                 <nav>                
@@ -24,6 +23,7 @@ session_start();
                         <a href="index.php?action=authorBoard">Les épisodes publiés</a>
                         <a href="index.php?action=pendingEpisodes">Les épisodes en attente de publication</a>
                         <a href="index.php?action=reportedCommentsBoard">Les commentaires signalés</a>
+                        <a href="index.php?action=logout">Déconnexion</a>
                     </div> 
                 </nav>
                 <main>

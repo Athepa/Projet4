@@ -6,7 +6,6 @@ namespace App\Model;
 
 use App\Service\Database;
 
-
 class AuthorConnectManager
 {
     private Database $database;
@@ -30,8 +29,8 @@ class AuthorConnectManager
         $dbrequest->execute([
             'loginAuthor'=> $loginAuthor
         ]);
-         $data = $dbrequest->fetch();
-         return $data !== false ? $data : null;
+        $data = $dbrequest->fetch();
+        return $data !== false ? $data : null;
     }
 
     /*public function authorInputData($data): array
@@ -40,11 +39,11 @@ class AuthorConnectManager
         FROM  author
         WHERE loginAuthor =:loginAuthorEntered, authorPassWord= :authorPassWordEntered
         ');
-        $dbrequest->execute([            
+        $dbrequest->execute([
             'loginAuthorEntered'=> $data['pseudo-author'],
-            'authorPassWordEntered' => $data['pwd-author'],            
-            ]); 
-            
+            'authorPassWordEntered' => $data['pwd-author'],
+            ]);
+
         $result =  $dbrequest->fetchAll();
         return $result;
     }*/
