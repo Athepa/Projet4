@@ -6,6 +6,7 @@ namespace  App\Controller\Backoffice;
 
 use App\Model\AuthorConnectManager;
 use App\Service\Http\Request;
+use App\Service\Http\Session;
 use App\View\View;
 
 class AuthorConnectionPageController
@@ -13,30 +14,31 @@ class AuthorConnectionPageController
     private AuthorConnectManager $authorConnectManager;
     private View $view;
     private Request $request;
+    
 
     public function __construct(AuthorConnectManager $authorConnectManager, View $view, Request $request)
     {
         $this->authorConnectManager =$authorConnectManager;
         $this->view = $view;
         $this->request = $request;
+        
     }
 
-    public function displayAuthorConnectionPage($data): void
+    public function displayAuthorConnectionPage(): void
     {
-        $this->view->render(['template' => 'authorConnectionPage']);
-
-        $storedData = $this->authorConnectManager->authorConnectionData();
-        var_dump($storedData);
-        die;
-        if ($this->request->getData() !== null) {
-            header('location:index.php?action=authorBoard');
-            exit;
+      
+        if ($this->request->getData() !== null ){
+            $recuplogAuteur = $this->authorConnectManager->authorData($this->request->getAuthorData('pseudo-author'));
+            if ($recuplogAuteur !== null  &&  password_verify($this->request->getAuthorData('pwd-author'),$recuplogAuteur['authorPassWord'] )){
+                header('location:index.php?action=authorBoard');
+                exit;
+            } else {
+                /*$this->session->setError('L\'dentifiant et/ou le mot de passe sont incorrects. Veuillez réessayer'); */
+                $this->view->render(['template' => 'authorConnectionPage']);
+                
+                echo ('L\'dentifiant et/ou le mot de passe sont incorrects. Veuillez réessayer');
+            }
         }
-        
-        $enteredData = $this->authorConnectManager->authorInputData($data);
-        
-        
-        
-        
+        $this->view->render(['template' => 'authorConnectionPage']);   
     }
 }

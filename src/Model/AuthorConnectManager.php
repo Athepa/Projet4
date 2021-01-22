@@ -6,6 +6,7 @@ namespace App\Model;
 
 use App\Service\Database;
 
+
 class AuthorConnectManager
 {
     private Database $database;
@@ -15,15 +16,25 @@ class AuthorConnectManager
         $this->database = $database;
     }
 
-    public function authorConnectionData(): array
+    public function authorConnectionData(int $index): string
     {
         $dbrequest= $this->database->connectDB()->query('SELECT loginAuthor, authorPassWord
         FROM author');
-        $data = $dbrequest->fetchAll();
-        return $data;
+        $data = $dbrequest->fetch();
+        return $data[$index];
     }
 
-    public function authorInputData($data): array
+    public function authorData(string $loginAuthor): ?array
+    {
+        $dbrequest= $this->database->connectDB()->prepare('SELECT loginAuthor, authorPassWord FROM `author` WHERE loginAuthor= :loginAuthor');
+        $dbrequest->execute([
+            'loginAuthor'=> $loginAuthor
+        ]);
+         $data = $dbrequest->fetch();
+         return $data !== false ? $data : null;
+    }
+
+    /*public function authorInputData($data): array
     {
         $dbrequest = $this->database->connectDB()->prepare('SELECT loginAuthor, authorPassWord
         FROM  author
@@ -36,5 +47,5 @@ class AuthorConnectManager
             
         $result =  $dbrequest->fetchAll();
         return $result;
-    }
+    }*/
 }

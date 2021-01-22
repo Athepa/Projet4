@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace  App\Service;
 
-use App\Controller\Backoffice\AuthorAddPostController;
 use App\Controller\Backoffice\AuthorBoardController;
 use App\Controller\Backoffice\AuthorConnectionPageController;
 use App\Controller\Frontoffice\CommentController;
@@ -15,14 +14,13 @@ use App\Model\CommentManager;
 use App\Model\PostManager;
 use App\Service\Database;
 use App\Service\Http\Request;
+use App\Service\Http\Session;
 use App\View\View;
 
 class Router
 {
     private Database $database;
     private View $view;
-    private array $get;
-    private array $post;
     private Request $request;
 
     public function __construct()
@@ -30,9 +28,6 @@ class Router
         $this->database = new Database();
         $this->view = new View();
         $this->request = new Request();
-
-        $this->get = $_GET;//While waiting Request Class
-        $this->post = $_POST;//While waiting Request Class
     }
 
     public function run(): void

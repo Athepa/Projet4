@@ -20,6 +20,11 @@ class Request
         return count($this->post) === 0 ? null : $this->post;
     }
 
+    public function getAuthorData(string $element): string
+    {
+        return htmlspecialchars($this->post[$element]);
+    }
+
     public function getAction(): string
     {
         return isset($this->get['action']) ? $this->get['action'] : 'home';
