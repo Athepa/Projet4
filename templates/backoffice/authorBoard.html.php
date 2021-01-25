@@ -21,4 +21,18 @@
             </tr>
         </table>          
     <?php endforeach; ?>
+    <p class="posts-paging">
+        <?php
+            if($data['prevPage']!== null)
+            {
+                echo '<a href="index.php?action=authorBoard&page='.$data['prevPage'].' ">Page précédente</a>';
+            }
+
+            if($data['nextPage']!== null)
+            {
+                echo '<a href="index.php?action=authorBoard&page='.$data['nextPage'].' ">Page suivante</a>';
+            }        
+        
+        ?>
+    </p>
 </section>

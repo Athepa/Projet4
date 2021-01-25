@@ -28,7 +28,7 @@ class PostManager
 
     public function countingPost(): int
     {
-        $dbrequest = $this->database->connectDB()->query('SELECT count(IdPost) FROM posts');
+        $dbrequest = $this->database->connectDB()->query('SELECT count(IdPost) FROM posts WHERE published = 1');
         $data = $dbrequest->fetch();
         return (int)$data[0];
     }
@@ -48,6 +48,19 @@ class PostManager
         $data = $dbrequest->fetchAll();
         return $data;
     }
+
+    /*public function showAllAuthorBoard() :?array
+    {
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
+         titlePost, textPost,postorder, published
+        FROM posts 
+        WHERE published = 1
+        ORDER BY postorder
+        ');
+        
+        $data = $dbrequest->fetchAll();
+        return $data;
+    }*/
   
     public function showOne(int $id): ?array
     {
@@ -94,7 +107,7 @@ class PostManager
         return  null;
     }
 
-    public function showAllAuthorBoard() :?array
+    /*public function showAllAuthorBoard() :?array
     {
         $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
          titlePost, textPost,postorder, published
@@ -105,7 +118,7 @@ class PostManager
         
         $data = $dbrequest->fetchAll();
         return $data;
-    }
+    }*/
 
     public function showPendingEpisodes(): ?array
     {

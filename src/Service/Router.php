@@ -86,7 +86,8 @@ class Router
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
             //http://index.php?action=authorBoard
-            $controller->displayAuthorBoard();
+            $currentPage = $this->request->getPage();
+            $controller->displayAuthorBoard((int)$currentPage);
         } elseif ($action === 'reportedCommentsBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
