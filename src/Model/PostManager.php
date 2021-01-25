@@ -32,6 +32,13 @@ class PostManager
         $data = $dbrequest->fetch();
         return (int)$data[0];
     }
+
+    public function countingPendingPost(): int
+    {
+        $dbrequest = $this->database->connectDB()->query('SELECT count(IdPost) FROM posts WHERE published = 0');
+        $data = $dbrequest->fetch();
+        return (int)$data[0];
+    }
     
     public function showAllPaginated(int $currentPage, int $numberOfPostsPerPage): ?array
     {
@@ -48,19 +55,6 @@ class PostManager
         $data = $dbrequest->fetchAll();
         return $data;
     }
-
-    /*public function showAllAuthorBoard() :?array
-    {
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
-         titlePost, textPost,postorder, published
-        FROM posts 
-        WHERE published = 1
-        ORDER BY postorder
-        ');
-        
-        $data = $dbrequest->fetchAll();
-        return $data;
-    }*/
   
     public function showOne(int $id): ?array
     {
@@ -107,28 +101,20 @@ class PostManager
         return  null;
     }
 
-    /*public function showAllAuthorBoard() :?array
+    public function showPendingEpisodes($currentPage, $numberOfPostsPerPage): ?array
     {
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
-         titlePost, textPost,postorder, published
-        FROM posts 
-        WHERE published = 1
-        ORDER BY postorder
-        ');
-        
-        $data = $dbrequest->fetchAll();
-        return $data;
-    }*/
+        $limitNb =  ($currentPage -1)* $numberOfPostsPerPage;
 
-    public function showPendingEpisodes(): ?array
-    {
-        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
+        $dbrequest = $this->database->connectDB()->prepare('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
          titlePost, textPost,postorder, published
         FROM posts 
         WHERE published = 0
         ORDER BY postorder
+        LIMIT :limitNumber, :numberOfPostsPerPage
         ');
-        
+        $dbrequest->bindValue(':numberOfPostsPerPage', $numberOfPostsPerPage, \PDO::PARAM_INT);
+        $dbrequest->bindValue(':limitNumber', $limitNb, \PDO::PARAM_INT);
+        $dbrequest->execute();        
         $data = $dbrequest->fetchAll();
         return $data;
     }
@@ -173,5 +159,18 @@ class PostManager
             'postorder' =>$data['postupdate-order'],
             'textPost' => $data['text-postupdate']
         ]);
+    }
+
+    public function showAllAuthorBoard() :?array
+    {
+        $dbrequest = $this->database->connectDB()->query('SELECT idPost, idAuthor, DATE_FORMAT(creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate,
+         titlePost, textPost,postorder, published
+        FROM posts 
+        WHERE published = 1
+        ORDER BY postorder
+        ');
+        
+        $data = $dbrequest->fetchAll();
+        return $data;
     }
 }

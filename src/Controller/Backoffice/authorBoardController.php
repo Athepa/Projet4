@@ -66,13 +66,31 @@ class AuthorBoardController
         }
     }
 
-    public function displayPendingEpisodes(): void
+    public function displayPendingEpisodes($currentPage): void
     {
         $this->sessionCheck();
-        $data = $this->postManager->showPendingEpisodes();
+        $numberOfPostsPerPage = 5;
+        $numberOfPosts = $this->postManager->countingPendingPost();
+        $numberOfPages =  ceil($numberOfPosts/$numberOfPostsPerPage);
+    
+        if ($currentPage > $numberOfPages) {
+            $currentPage = $numberOfPages;
+        } elseif ($currentPage < 1) {
+            $currentPage === 1;
+        }
+        $prevPage = $currentPage -1;
+        if ($prevPage<1) {
+            $prevPage = null;
+        }
+        $nextPage = $currentPage + 1;
+        if ($nextPage>$numberOfPages) {
+            $nextPage = null;
+        }
+
+        $data = $this->postManager->showPendingEpisodes($currentPage, $numberOfPostsPerPage);
 
         if ($data!== null) {
-            $this->view->renderBackOffice(['template'=> 'pendingEpisodes', 'allposts' => $data]);
+            $this->view->renderBackOffice(['template'=> 'pendingEpisodes', 'allposts' => $data, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($data === null) {
             echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
         }

@@ -99,7 +99,8 @@ class Router
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
             //http://index.php?action=pendingEpisodes
-            $controller->displayPendingEpisodes();
+            $currentPage = $this->request->getPage();
+            $controller->displayPendingEpisodes($currentPage);
         } elseif ($action === 'authorAddPost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
