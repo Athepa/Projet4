@@ -6,20 +6,38 @@ namespace App\Service\Http;
 
 class Session
 {
+    public function __construct()
+    {
+        session_start();
+    }
+
     public function dataSession(string $element): string
     {
         return $_SESSION[$element] ;
     }
 
-    public function setError(string $message): void
+    public function setAuthor(string $key, string $value): void
     {
-        $_SESSION['error']= $message;
+        $_SESSION[$key] = $value;
     }
 
-    public function getError()
+    public function getAuthor(string $key): ?string
+    {
+        if (!$_SESSION) {
+            return null;
+        }
+        return $_SESSION[$key] ;
+    }
+
+    public function setError(string $value): void
+    {
+        $_SESSION['error']= $value;
+    }
+
+    public function getError(): string
     {
         $message = $_SESSION['error'];
-        session_unset($message);
+        unset($_SESSION['error']);
         return $message;
     }
 }

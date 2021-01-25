@@ -212,6 +212,12 @@ nav a, footer a{
     border-radius: 10px;
 }
 
+.alert-connection{
+    padding: 0.5rem;
+    font-family: 'exo', sans-serif;
+    color:whitesmoke;
+}
+
 #comment{
     height: 6rem;
 }

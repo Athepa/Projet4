@@ -28,6 +28,7 @@ class Router
         $this->database = new Database();
         $this->view = new View();
         $this->request = new Request();
+        $this->session = new Session();
     }
 
     public function run(): void
@@ -73,68 +74,68 @@ class Router
             $controller->validateCommentAction((int)$this->request->getIdComment());
         } elseif ($action === 'authorConnectionPage') {
             $authorConnectManager = new AuthorConnectManager($this->database);
-            $controller = new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request);
+            $controller = new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request, $this->session);
             //http://index.php?action=authorConnectionPage
             $controller->displayAuthorConnectionPage($this->request->getData());
         } elseif ($action === 'logout') {
             $authorConnectManager = new AuthorConnectManager($this->database);
-            $controller =new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request);
+            $controller =new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request, $this->session);
             //http://index.php?action=logout
             $controller->logout();
         } elseif ($action === 'authorBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=authorBoard
             $currentPage = $this->request->getPage();
             $controller->displayAuthorBoard((int)$currentPage);
         } elseif ($action === 'reportedCommentsBoard') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=reportedCommentsBoard
             $controller->displayReportedCommentsList();
         } elseif ($action === 'pendingEpisodes') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=pendingEpisodes
             $currentPage = $this->request->getPage();
             $controller->displayPendingEpisodes($currentPage);
         } elseif ($action === 'authorAddPost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=authorAddPost
             $controller->authorAddPostDisplay();
         } elseif ($action === 'savePost' && $this->request->has('idAuthor')) {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=savePost&idAuthor=X
             $controller->savePostAction();
         } elseif ($action === 'deletePost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=deletePost&idPost=X
             $controller->deletePostAction((int)$this->request->getIdPost());
         } elseif ($action === 'publishPost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=publishPost&idPost=X
             $controller->publishPostAction((int)$this->request->getIdPost());
         } elseif ($action === 'updatingPost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=updatingPost&idPost=X
             $controller->updatingPostAction((int)$this->request->getIdPost());
         } elseif ($action === 'updatedPost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
-            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=updatedPost&idPost=X
             $controller->updatedPostAction((int)$this->request->getIdPost(), (array)$this->request->getData());
         } else {

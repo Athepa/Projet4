@@ -32,19 +32,4 @@ class AuthorConnectManager
         $data = $dbrequest->fetch();
         return $data !== false ? $data : null;
     }
-
-    /*public function authorInputData($data): array
-    {
-        $dbrequest = $this->database->connectDB()->prepare('SELECT loginAuthor, authorPassWord
-        FROM  author
-        WHERE loginAuthor =:loginAuthorEntered, authorPassWord= :authorPassWordEntered
-        ');
-        $dbrequest->execute([
-            'loginAuthorEntered'=> $data['pseudo-author'],
-            'authorPassWordEntered' => $data['pwd-author'],
-            ]);
-
-        $result =  $dbrequest->fetchAll();
-        return $result;
-    }*/
 }

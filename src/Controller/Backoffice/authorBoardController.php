@@ -17,18 +17,18 @@ class AuthorBoardController
     public Session $session;
     public AuthorConnectManager $authorConnectManager;
 
-    public function __construct(PostManager $postManager, CommentManager $commentManager, View $view, Request $request)
+    public function __construct(PostManager $postManager, CommentManager $commentManager, View $view, Request $request, Session $session)
     {
-        session_start();
         $this->postManager = $postManager;
         $this->commentManager = $commentManager;
         $this->view = $view;
         $this->request = $request;
+        $this->session = $session;
     }
 
     public function sessionCheck(): void
     {
-        if (empty($_SESSION)) {
+        if (empty($this->session->getAuthor('loginAuthor'))) {
             header('Location: index.php?action=authorConnectionPage');
             exit();
         }
@@ -58,8 +58,6 @@ class AuthorBoardController
 
         $data = $this->postManager->showAllPaginated($currentPage, $numberOfPostsPerPage);
         if ($data !== null) {
-            /*$idOfSession = session_id();
-            var_dump($idOfSession,$_SESSION['loginAuthor']);*/
             $this->view->renderBackOffice(['template' => 'authorBoard', 'allposts' => $data, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($data === null) {
             echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';

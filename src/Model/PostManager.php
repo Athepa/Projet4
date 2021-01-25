@@ -114,7 +114,7 @@ class PostManager
         ');
         $dbrequest->bindValue(':numberOfPostsPerPage', $numberOfPostsPerPage, \PDO::PARAM_INT);
         $dbrequest->bindValue(':limitNumber', $limitNb, \PDO::PARAM_INT);
-        $dbrequest->execute();        
+        $dbrequest->execute();
         $data = $dbrequest->fetchAll();
         return $data;
     }
