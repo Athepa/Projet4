@@ -130,7 +130,7 @@ class AuthorBoardController
         if ($dataToUpdate !==null) {
             $this->view->renderBackOffice(['template'=>'authorUpdatePost', 'postToUpdate' =>$dataToUpdate]);
         } elseif ($dataToUpdate === null) {
-            echo '<h1>Il n\'y a plus de commentaires signalés. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
+            echo '<h1>Il n\'y a plus d\'épisodes à modifier. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
         }
     }
 

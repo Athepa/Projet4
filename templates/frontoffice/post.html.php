@@ -1,7 +1,6 @@
 <article class="single-episode">
     <h2><?=$data['onepost']['titlePost']?></h2>
-    <p class="the-episode"><?=$data['onepost']['textPost']?></p>
-        
+    <div class="the-episode"><?=$data['onepost']['textPost']?></div>    
     <form class="comments-form" method="post" action="index.php?action=saveComment&idPost=<?=$data['onepost']['idPost']?>">            
         <p><input id="pseudo" type="text" name="pseudo" placeholder="Votre pseudonyme" required/></p>
         <textarea id="comment" type="text" name="comment" placeholder="Votre commentaire" required></textarea>

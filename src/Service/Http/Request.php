@@ -17,7 +17,7 @@ class Request
     
     public function getData(): ?array
     {
-        return count($this->post) === 0 ? null : $this->post;
+        return count($this->post) === 0 ? null : filter_var_array($this->post);
     }
 
     public function getAuthorData(string $element): string

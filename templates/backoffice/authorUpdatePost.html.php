@@ -4,8 +4,7 @@
     <form class="post-form" method="POST" action="index.php?action=updatedPost&idPost=<?=$data['postToUpdate']['idPost']?>">          
         <input id="title-postupdate" type="text" name="title-postupdate" value="<?=$data['postToUpdate']['titlePost']?>" required/>
         <input id="postupdate-order" type="number" name="postupdate-order" value="<?=$data['postToUpdate']['postorder']?>" required/>
-        <textarea id="text-postupdate" type="text" name="text-postupdate" value="<?=$data['postToUpdate']['textPost']?>" ></textarea>
+        <textarea id="text-postupdate" type="text" name="text-postupdate" value="<?=$data['postToUpdate']['textPost']?>"></textarea>
         <input type="submit" id="send" value="Enregistrer"/>
     </form>
-    
 </section>

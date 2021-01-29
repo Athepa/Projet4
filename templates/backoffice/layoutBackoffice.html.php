@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="https://kit.fontawesome.com/5142545afa.js" crossorigin="anonymous"></script>
         <script src="https://cdn.tiny.cloud/1/5krhv1m6ajju1a6d9xzw94sn950yq4ocsg74gvq98tcrvkax/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>tinymce.init({selector:'textarea'});</script>
         <link rel="stylesheet" href="css/backend-style.css" />
         <title>Blog</title>
     </head>
@@ -29,6 +28,10 @@
                 <main>
                     <?=$content?>
                 </main>
-            </div>                  
+            </div>
+            <script>tinymce.init({
+                selector: 'textarea',
+                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                toolbar_mode: 'floating',});</script>                  
         </body>   
 </html>
