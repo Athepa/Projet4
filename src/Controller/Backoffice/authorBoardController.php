@@ -32,8 +32,7 @@ class AuthorBoardController
             header('Location: index.php?action=authorConnectionPage');
             exit();
         }
-    }
-    
+    }    
 
     public function displayAuthorBoard($currentPage): void
     {
