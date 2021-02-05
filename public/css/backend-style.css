@@ -123,9 +123,13 @@ main{
     font-size: 1.2rem;
 }
 
-.rprtd-cmt-cel{
+.rprtd-cmt-cel {
     width: 40%;
     text-align: justify;
+}
+
+.rprtd-cmt-cel-title{
+    width: 100%;
 }
 
 .post-id-cel{
@@ -143,6 +147,25 @@ main{
     font-family: 'exo', sans-serif;
     font-size: 1.2rem;
     color: black;
+}
+
+.post-id-cel-title{
+    text-align: center;
+    width: 100%;
+}
+
+.titles-reportedComments{
+    width: 100%;
+}
+
+.action-title{
+    width: 100%;
+    text-align: center;
+}
+
+.rprtd-cmt-cel-title, .post-id-cel-title, .action-title{
+    font-family: 'exo', sans-serif;
+    font-size: 1.2rem;
 }
 
 .validate, .delete-cmt{
@@ -195,8 +218,9 @@ main{
     height: 2em;
 }
 
-#text-postupdate{
+#text-postupdate, #text-post{
     height: 30rem;
+    display: block;
 }
 
 .tox-tinymce{
@@ -208,7 +232,5 @@ main{
     height: 1.5rem;
 }
 
-#text-post{
-    height: 10rem;
-}
+
 

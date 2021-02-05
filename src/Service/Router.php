@@ -94,7 +94,8 @@ class Router
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=reportedCommentsBoard
-            $controller->displayReportedCommentsList();
+            $currentPage = $this->request->getPage();
+            $controller->displayReportedCommentsList($currentPage);
         } elseif ($action === 'pendingEpisodes') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
@@ -132,12 +133,24 @@ class Router
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
             //http://index.php?action=updatingPost&idPost=X
             $controller->updatingPostAction((int)$this->request->getIdPost());
-        } elseif ($action === 'updatedPost') {
+        } elseif ($action === 'updatingPendingPost') {
             $postManager = new PostManager($this->database);
             $commentManager = new CommentManager($this->database);
             $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
-            //http://index.php?action=updatedPost&idPost=X
-            $controller->updatedPostAction((int)$this->request->getIdPost(), (array)$this->request->getData());
+            //http://index.php?action=updatingPendingPost&idPost=X
+            $controller->updatingPendingPostAction((int)$this->request->getIdPost());
+        } elseif ($action === 'updatedPendingPost') {
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
+            //http://index.php?action=updatedPendingPost&idPost=X
+            $controller->updatedPendingPostAction((int)$this->request->getIdPost(), (array)$this->request->getData());
+        } elseif ($action === 'updatedPublishedPost') {
+            $postManager = new PostManager($this->database);
+            $commentManager = new CommentManager($this->database);
+            $controller = new AuthorBoardController($postManager, $commentManager, $this->view, $this->request, $this->session);
+            //http://index.php?action=updatedPublishedPost&idPost=X
+            $controller->updatedPublishedPostAction((int)$this->request->getIdPost(), (array)$this->request->getData());
         } else {
             echo "Error 404 - La page que vous recherchez est indisponible. Veuillez nous excuser pour la gêne occasionnée. <br>
             <a href=http://localhost:8000/index.php>Revenir à la page d'accueil</a>";

@@ -1,6 +1,18 @@
 <section class="reported-comments-list">
 <p class="reported-comments">Listes des commentaires signalés</p>
-
+<table class="titles-reportedComments">
+    <tr>
+        <td>
+            <p class="rprtd-cmt-cel-title">Commentaires signalés</p>
+        </td>
+        <td>
+            <p class="post-id-cel-title">Episode</p>
+        </td>
+        <td>
+            <p class="action-title">Que souhaitez-vous faire?</p>
+        </td>
+    </tr>
+</table>    
     <?php foreach($data['comments'] as $comments) : ?>
         <table>
             <tr>
@@ -20,4 +32,18 @@
             </tr>
         </table>            
     <?php endforeach; ?>
+    <p class="reportedComments-paging">
+        <?php
+            if($data['prevPage']!== null)
+            {
+                echo '<a href="index.php?action=reportedCommentsBoard&page='.$data['prevPage'].' ">Page précédente</a>';
+            }
+
+            if($data['nextPage']!== null)
+            {
+                echo '<a href="index.php?action=reportedCommentsBoard&page='.$data['nextPage'].' ">Page suivante</a>';
+            }        
+        
+        ?>
+    </p>
 </section>    

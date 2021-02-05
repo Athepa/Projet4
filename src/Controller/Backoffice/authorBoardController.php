@@ -134,21 +134,56 @@ class AuthorBoardController
         }
     }
 
-    public function updatedPostAction(int $idPost, $data): void
+    public function updatingPendingPostAction(int $idPost): void
+    {
+        $this->sessionCheck();
+        $dataToUpdate = $this->postManager->showOne($idPost);
+        if ($dataToUpdate !==null) {
+            $this->view->renderBackOffice(['template'=>'authorUpdatePendingPost', 'postToUpdate' =>$dataToUpdate]);
+        } elseif ($dataToUpdate === null) {
+            echo '<h1>Il n\'y a plus d\'épisodes à modifier. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
+        }
+    }
+
+    public function updatedPendingPostAction(int $idPost, $data): void
     {
         $this->postManager->updatedPost($idPost, $data);
         header('location: index.php?action=pendingEpisodes');
         exit();
     }
 
-    public function displayReportedCommentsList():void
+    public function updatedPublishedPostAction(int $idPost, $data): void
+    {
+        $this->postManager->updatedPost($idPost, $data);
+        header('location: index.php?action=authorBoard');
+        exit();
+    }
+
+    public function displayReportedCommentsList(int $currentPage):void
     {
         $this->sessionCheck();
-        $dataComments = $this->commentManager->reportedComments();
+        $numberOfCommentsPerPage = 4;
+        $dataComments = $this->commentManager->reportedComments($currentPage, $numberOfCommentsPerPage);
         $dataPost = $this->postManager->showAllAuthorBoard();
 
+        $numberOfComments = $this->commentManager->countingComments();
+        $numberOfPages =  ceil($numberOfComments/$numberOfCommentsPerPage);
+        if ($currentPage > $numberOfPages) {
+            $currentPage = $numberOfPages;
+        } elseif ($currentPage < 1) {
+            $currentPage === 1;
+        }
+        $prevPage = $currentPage -1;
+        if ($prevPage<1) {
+            $prevPage = null;
+        }
+        $nextPage = $currentPage + 1;
+        if ($nextPage>$numberOfPages) {
+            $nextPage = null;
+        }
+
         if ($dataComments !== null) {
-            $this->view->renderBackOffice(['template' => 'reportedCommentsBoard', 'allposts' => $dataPost,'comments'=> $dataComments]);
+            $this->view->renderBackOffice(['template' => 'reportedCommentsBoard', 'allposts' => $dataPost,'comments'=> $dataComments, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($dataComments === null) {
             echo '<h1>Il n\'y a plus de commentaires signalés. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
         }

@@ -75,16 +75,27 @@ class CommentManager
         $dbrequest->execute(['idComment'=>$idComment]);
     }
 
-    public function reportedComments(): ?array
+    public function reportedComments($currentPage, $numberOfCommentsPerPage): ?array
     {
+        $limitNb =  ($currentPage -1)* $numberOfCommentsPerPage;
         $dbrequest = $this->database->connectDB()->prepare('SELECT com.idComment,com.idPost, com.pseudoUser, DATE_FORMAT(com.creationDate,\'%d/%m/%Y à %Hh%imin%ss\') AS fr_creationDate, com.commentText,com.report,ep.postorder 
         FROM comments com
         INNER JOIN posts ep ON ep.idPost = com.idPost
         WHERE com.report = 1
+        LIMIT :limitNumber, :numberOfCommentsPerPage
         ');
 
+        $dbrequest->bindValue(':numberOfCommentsPerPage', $numberOfCommentsPerPage, \PDO::PARAM_INT);
+        $dbrequest->bindValue(':limitNumber', $limitNb, \PDO::PARAM_INT);
         $dbrequest->execute();
         $data = $dbrequest->fetchAll();
         return $data;
+    }
+
+    public function countingComments(): int
+    {
+        $dbrequest = $this->database->connectDB()->query('SELECT count(idComment) FROM comments WHERE report = 1');
+        $data = $dbrequest->fetch();
+        return (int)$data[0];
     }
 }
