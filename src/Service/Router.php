@@ -15,6 +15,7 @@ use App\Model\PostManager;
 use App\Service\Database;
 use App\Service\Http\Request;
 use App\Service\Http\Session;
+use App\Service\Token;
 use App\View\View;
 
 class Router
@@ -22,6 +23,7 @@ class Router
     private Database $database;
     private View $view;
     private Request $request;
+    private Token $token; 
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class Router
         $this->view = new View();
         $this->request = new Request();
         $this->session = new Session();
+        $this->token = new Token($this->session);
     }
 
     public function run(): void
@@ -74,12 +77,12 @@ class Router
             $controller->validateCommentAction((int)$this->request->getIdComment());
         } elseif ($action === 'authorConnectionPage') {
             $authorConnectManager = new AuthorConnectManager($this->database);
-            $controller = new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request, $this->session);
+            $controller = new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request, $this->session, $this->token);
             //http://index.php?action=authorConnectionPage
             $controller->displayAuthorConnectionPage($this->request->getData());
         } elseif ($action === 'logout') {
             $authorConnectManager = new AuthorConnectManager($this->database);
-            $controller =new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request, $this->session);
+            $controller =new AuthorConnectionPageController($authorConnectManager, $this->view, $this->request, $this->session, $this->token);
             //http://index.php?action=logout
             $controller->logout();
         } elseif ($action === 'authorBoard') {

@@ -23,7 +23,7 @@ class Session
 
     public function getAuthor(string $key): ?string
     {
-        if (!$_SESSION) {
+        if (!isset($_SESSION[$key])) {
             return null;
         }
         return $_SESSION[$key] ;
@@ -39,5 +39,15 @@ class Session
         $message = $_SESSION['error'];
         unset($_SESSION['error']);
         return $message;
+    }
+
+    public function setTokenKey( string $value): void
+    {
+        $_SESSION['token'] = $value;
+    }
+
+    public function getTokenKey(): string
+    {
+        return $_SESSION['token'];
     }
 }

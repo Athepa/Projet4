@@ -59,7 +59,8 @@ class AuthorBoardController
         if ($data !== null) {
             $this->view->renderBackOffice(['template' => 'authorBoard', 'allposts' => $data, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($data === null) {
-            echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
+            header('Location: index.php?action=authorConnectionPage');
+            exit();
         }
     }
 
@@ -89,7 +90,8 @@ class AuthorBoardController
         if ($data!== null) {
             $this->view->renderBackOffice(['template'=> 'pendingEpisodes', 'allposts' => $data, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($data === null) {
-            echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
+            header('Location: index.php?action=authorConnectionPage');
+            exit();
         }
     }
 
@@ -129,7 +131,8 @@ class AuthorBoardController
         if ($dataToUpdate !==null) {
             $this->view->renderBackOffice(['template'=>'authorUpdatePost', 'postToUpdate' =>$dataToUpdate]);
         } elseif ($dataToUpdate === null) {
-            echo '<h1>Il n\'y a plus d\'épisodes à modifier. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
+            header('location: index.php?action=authorBoard');
+            exit();
         }
     }
 
@@ -140,7 +143,8 @@ class AuthorBoardController
         if ($dataToUpdate !==null) {
             $this->view->renderBackOffice(['template'=>'authorUpdatePendingPost', 'postToUpdate' =>$dataToUpdate]);
         } elseif ($dataToUpdate === null) {
-            echo '<h1>Il n\'y a plus d\'épisodes à modifier. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
+            header('location: index.php?action=authorBoard');
+            exit();
         }
     }
 
@@ -184,7 +188,8 @@ class AuthorBoardController
         if ($dataComments !== null) {
             $this->view->renderBackOffice(['template' => 'reportedCommentsBoard', 'allposts' => $dataPost,'comments'=> $dataComments, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($dataComments === null) {
-            echo '<h1>Il n\'y a plus de commentaires signalés. <a href="index.php?action=authorBoard"> Revenir au tableau de bord </a> </h1>';
+            header('location: index.php?action=authorBoard');
+            exit();
         }
     }
 }
