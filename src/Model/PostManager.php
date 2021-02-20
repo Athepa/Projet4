@@ -66,7 +66,7 @@ class PostManager
 
         $dbrequest->execute(['id'=>$id]);
         $data = $dbrequest->fetch();
-        return $data;
+        return $data===false ? null:$data;
     }
 
     public function nextPost(int $postorder): ?int

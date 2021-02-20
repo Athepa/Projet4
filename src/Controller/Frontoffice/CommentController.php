@@ -19,7 +19,6 @@ class CommentController
 
     public function saveCommentAction(int $idPost, array $data): void
     {
-        //mettre en place les règles de gestion des données
         $this->commentManager->addComment($idPost, $data);
         header('location: index.php?action=post&idPost='.$idPost);
         exit();

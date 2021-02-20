@@ -19,4 +19,9 @@ class HomeController
     {
         $this->view->render(['template' => 'home']);
     }
+
+    public function displayErrorPage(): void
+    {
+        $this->view->render(['template' => 'errorPage']);
+    }
 }

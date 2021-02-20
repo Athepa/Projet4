@@ -17,7 +17,7 @@ class Token
     public function generate(): string
     {
         $primaryToken = random_bytes(10);
-        $hashedToken= password_hash($primaryToken,PASSWORD_BCRYPT);
+        $hashedToken= password_hash($primaryToken, PASSWORD_BCRYPT);
         $this->session->setTokenKey($hashedToken);
         return $hashedToken;
     }

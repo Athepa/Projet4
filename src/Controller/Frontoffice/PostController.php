@@ -24,15 +24,14 @@ class PostController
     public function displayOneAction(int $id): void
     {
         $dataPost = $this->postManager->showOne($id);
+        if ($dataPost === null) {
+            header('location: index.php?action=error');
+            exit;
+        }
         $idNext = $this->postManager->nextPost((int) $dataPost['postorder']);
         $idPrev = $this->postManager->previousPost((int) $dataPost['postorder']);
         $dataComments = $this->commentManager->showAllFromPost($id);
-
-        if ($dataPost !== null) {
-            $this->view->render(['template' => 'post','onepost' => $dataPost, 'comments' => $dataComments, 'prevId'=>$idPrev, 'nextId'=>$idNext]);
-        } elseif ($dataPost === null) {
-            echo '<h1>La page à laquelle vous essayer d\'acéder est indisponible</h1><a href="index.php?action=posts">Retouner à la liste des épisodes</a><br>';
-        }
+        $this->view->render(['template' => 'post','onepost' => $dataPost, 'comments' => $dataComments, 'prevId'=>$idPrev, 'nextId'=>$idNext]);
     }
 
 
@@ -40,11 +39,11 @@ class PostController
     {
         $numberOfPostsPerPage = 4;
         $numberOfPosts = $this->postManager->countingPost();
-        $numberOfPages =  ceil($numberOfPosts/$numberOfPostsPerPage);
+        $numberOfPages =  (int) ceil($numberOfPosts/$numberOfPostsPerPage);
         if ($currentPage > $numberOfPages) {
             $currentPage = $numberOfPages;
         } elseif ($currentPage < 1) {
-            $currentPage === 1;
+            $currentPage = 1;
         }
         $prevPage = $currentPage -1;
         if ($prevPage<1) {
@@ -60,7 +59,8 @@ class PostController
         if ($posts !== null) {
             $this->view->render(['template' => 'posts', 'allposts' => $posts, 'prevPage' => $prevPage, 'nextPage' => $nextPage]);
         } elseif ($posts === null) {
-            echo '<h1>faire une redirection vers la page d\'erreur, il n\'y pas de post</h1>';
+            header('location: index.php?action=error');
+            exit;
         }
     }
 }

@@ -32,19 +32,19 @@ class AuthorBoardController
             header('Location: index.php?action=authorConnectionPage');
             exit();
         }
-    }    
+    }
 
     public function displayAuthorBoard($currentPage): void
     {
         $this->sessionCheck();
         $numberOfPostsPerPage = 5;
         $numberOfPosts = $this->postManager->countingPost();
-        $numberOfPages =  ceil($numberOfPosts/$numberOfPostsPerPage);
+        $numberOfPages =  (int)ceil($numberOfPosts/$numberOfPostsPerPage);
     
         if ($currentPage > $numberOfPages) {
             $currentPage = $numberOfPages;
         } elseif ($currentPage < 1) {
-            $currentPage === 1;
+            $currentPage = 1;
         }
         $prevPage = $currentPage -1;
         if ($prevPage<1) {
@@ -69,12 +69,12 @@ class AuthorBoardController
         $this->sessionCheck();
         $numberOfPostsPerPage = 5;
         $numberOfPosts = $this->postManager->countingPendingPost();
-        $numberOfPages =  ceil($numberOfPosts/$numberOfPostsPerPage);
+        $numberOfPages =  (int)ceil($numberOfPosts/$numberOfPostsPerPage);
     
         if ($currentPage > $numberOfPages) {
             $currentPage = $numberOfPages;
         } elseif ($currentPage < 1) {
-            $currentPage === 1;
+            $currentPage = 1;
         }
         $prevPage = $currentPage -1;
         if ($prevPage<1) {
@@ -148,15 +148,17 @@ class AuthorBoardController
         }
     }
 
-    public function updatedPendingPostAction(int $idPost, $data): void
+    public function updatedPendingPostAction(int $idPost, array $data): void
     {
+        $data = $this->request->getData();
         $this->postManager->updatedPost($idPost, $data);
         header('location: index.php?action=pendingEpisodes');
         exit();
     }
 
-    public function updatedPublishedPostAction(int $idPost, $data): void
+    public function updatedPublishedPostAction(int $idPost, array $data): void
     {
+        $data = $this->request->getData();
         $this->postManager->updatedPost($idPost, $data);
         header('location: index.php?action=authorBoard');
         exit();
@@ -170,11 +172,11 @@ class AuthorBoardController
         $dataPost = $this->postManager->showAllAuthorBoard();
 
         $numberOfComments = $this->commentManager->countingComments();
-        $numberOfPages =  ceil($numberOfComments/$numberOfCommentsPerPage);
+        $numberOfPages =  (int)ceil($numberOfComments/$numberOfCommentsPerPage);
         if ($currentPage > $numberOfPages) {
             $currentPage = $numberOfPages;
         } elseif ($currentPage < 1) {
-            $currentPage === 1;
+            $currentPage = 1;
         }
         $prevPage = $currentPage -1;
         if ($prevPage<1) {

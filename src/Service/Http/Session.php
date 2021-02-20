@@ -41,7 +41,7 @@ class Session
         return $message;
     }
 
-    public function setTokenKey( string $value): void
+    public function setTokenKey(string $value): void
     {
         $_SESSION['token'] = $value;
     }

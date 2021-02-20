@@ -5,7 +5,7 @@
     <?php foreach($data['allposts'] as $post): ?>    
         <h3 class="post-title"><a href="index.php?action=post&idPost=<?=$post['idPost']?>"><?=$post['titlePost']?></a></h3>
         <p class="publication-date">Publié le <?=$post['fr_creationDate']?></p>
-        <div class="post-text-sample"><?=$post['textPost']?></div>
+        <div class="post-text-sample"><?=htmlspecialchars_decode($post['textPost'])?></div>
         <button class="post-link"><a  href="index.php?action=post&idPost=<?=$post['idPost']?>">Lire l'épisode</a></button>            
     <?php endforeach; ?>
     <p class="posts-paging">
