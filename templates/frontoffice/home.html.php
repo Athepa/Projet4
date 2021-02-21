@@ -2,7 +2,7 @@
     <h1>Bienvenue sur le blog de Jean Forteroche</h1>
 </header>
 <section class="intro">
-    <p class="img-presentation"> <img src="..\images\livres.jpg" alt="Image d'illustration"/></p>
+    <div class="img-presentation"> <img src="..\images\livres.jpg" alt="Image d'illustration"/></div>
     <article>
         <h3>Je vous présente mon nouveau roman publié en ligne</h3>
         <p>L'écriture d'un roman peut vous plonger dans une solitude dont seule l'achèvement de celui-ci peut vous sortir. 

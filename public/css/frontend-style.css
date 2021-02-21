@@ -42,11 +42,6 @@ main{
 }
 
 nav{
-   /*position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-    z-index: 200;*/
     background-color: rgb(205,92,92);
 	display: flex;
 	justify-content: space-around;
@@ -73,7 +68,6 @@ nav a, footer a{
 
 .intro{
     display: flex;
-    justify-content: space-around;
     background-color:rgba(240,128,128,0.8);
     padding: 3rem;
     margin-bottom: 3rem; 
@@ -92,6 +86,8 @@ nav a, footer a{
 .intro article{
     font-size: 1.25rem;
 }
+
+
 .img-presentation img{
    max-width: 70%;
    height: auto;
@@ -104,6 +100,10 @@ nav a, footer a{
     font-size: 1.5rem;
     color: whitesmoke;
     font-family: 'exo', sans-serif;
+}
+
+.post-text-sample p{
+    margin: 0;
 }
 
 .post-link , #send, #sbmt-author-connect{
@@ -336,4 +336,112 @@ footer{
     padding-right: 20%;
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+
+@media screen and (max-width:768px){
+    header{
+        margin-top: 7rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    h1{
+        font-family:'exobold', sans-serif ;
+        font-size: 2rem;
+        color: whitesmoke;
+    }
+
+    main{
+        width: 90%;        
+    }
+
+    .intro{
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .intro article{
+        width: 100%;
+        text-align: center;
+        font-size: 1.25rem;
+    }
+    
+    .intro article h3{
+        margin-top: 5rem;
+        font-size: 1.5rem;
+        text-align: center;
+    }    
+
+    .img-presentation{
+        padding-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .img-presentation img{
+       width: 100%;
+       padding-top: 3rem;
+    }
+
+    .author-connection{
+        width: 90%;
+    }
+    
+    
+}
+
+@media screen and (max-width:375px){
+    .logo-blog{
+        display: none;
+    }
+
+    main{
+        width: 100%;        
+    }
+
+    .intro article h3{
+        margin-top: 2.5rem;
+        font-size: 1.25rem;
+        text-align: center;
+    }  
+    
+    .intro article{
+        width: 100%;
+        text-align: center;
+        font-size: 1.15rem;
+        padding-left: 0;
+    }
+
+    .post-list h2{
+        font-size:2rem ;
+    }
+
+    .post-list h3{
+        font-size:1.5rem ;
+    }
+
+    .post-text-sample p{
+        font-size: 1.15rem;
+    }
+
+    .single-episode h2{
+        font-size: 2rem;
+    }
+
+    .the-episode p{
+        font-size: 1rem;
+    }
+
+    .pagination, .posts-paging{
+        width: 100%;
+    }
+
+    .pagination a, .posts-paging a{
+        font-size: 1rem;
+    }
+
+    .author-connection{
+        width: 90%;
+        margin-left: 1rem;
+    }
 }

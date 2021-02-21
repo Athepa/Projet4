@@ -20,7 +20,7 @@
                     <div class="menu-navigation"> 
                         <a href="index.php"> Retourner sur le blog</a>      
                         <a href="index.php?action=authorBoard">Les épisodes publiés</a>
-                        <a href="index.php?action=pendingEpisodes">Les épisodes en attente de publication</a>
+                        <a href="index.php?action=pendingEpisodes">Les épisodes non publiés</a>
                         <a href="index.php?action=reportedCommentsBoard">Les commentaires signalés</a>
                         <a href="index.php?action=logout">Déconnexion</a>
                     </div> 

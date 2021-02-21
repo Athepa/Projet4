@@ -95,7 +95,6 @@ main{
 .read, .update, .delete{
     font-family: 'exolight', sans-serif;
     font-size: 1.2rem;
-    width: 10%;
 }
 
 .create{
@@ -168,10 +167,6 @@ main{
     font-size: 1.2rem;
 }
 
-.validate, .delete-cmt{
-    width: 28%;
-}
-
 .validate a, .delete-cmt a{
     font-family: 'exolight', sans-serif;
     text-align: center;
@@ -230,6 +225,172 @@ main{
 
 #title-post, #post-order{
     height: 1.5rem;
+}
+
+.posts-paging, .pendingPosts-paging, .reportedComments-paging{
+    border: 2px black solid;
+    padding: 1em;
+    font-family: 'exo', sans-serif;
+    font-size: 1.2rem;
+    width: fit-content;
+}
+
+.posts-paging a, .pendingPosts-paging a, .reportedComments-paging a{
+    text-decoration: none;
+}
+
+.publish-block div a{
+    display: block;
+    margin-left: 1rem;
+}
+
+.publish-block{
+    display: flex;
+}
+
+.publish-block div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rprted-cmt-block{
+    display: flex;
+}
+
+.cmt-rprted{
+    width: 70%;
+}
+
+.cmt-rprted-action{
+    display: flex;
+}
+
+
+
+@media screen and (max-width:768px){
+    .main-div{
+        flex-direction: column;
+        width: 100%;
+        padding-top: 2rem;
+    }
+
+    .menu-navigation{
+        display: flex;
+        flex-direction: row;
+        padding-top: 2.2rem;
+    }
+
+    .menu-navigation a{
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-bottom: 2px black solid;
+       
+    }
+
+    .menu-navigation :last-child{
+        padding-top: 1rem !important;
+    }
+
+    main{
+        width: 100%;
+    }
+
+    .create{
+        text-align: center;
+    }
+
+    .add-episode{
+        width: 95%;
+    }
+    
+}
+
+@media screen and (max-width:375px){
+    header h2{
+        width: 100%;
+        font-size: 1.5rem;
+        text-align: center;
+        font-weight: 'exobold', sans-serif;
+    }
+
+    .menu-navigation{
+        display: flex;
+        flex-direction: column;
+        padding-top: 2.2rem;
+    }
+
+    .menu-navigation a{
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-bottom: none;
+       
+    }
+
+    .menu-navigation :last-child{
+        padding-top: 0.5rem !important;
+        border-bottom: 2px black solid;
+    }
+
+    .episodes-list{        
+        font-size: 1.25rem;
+        text-align: center;
+        margin-top: 2rem;
+                
+    }
+
+    .episode-title{
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .publish-block{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .publish-block div{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .read, .update, .delete{
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1rem;
+    }
+
+    .validate a, .delete-cmt a{
+        font-size: 1rem;
+    }
+
+    .validate , .delete-cmt {
+        margin-top: 0;
+    }
+
+    .rprted-cmt-txt{
+       font-size: 1.25rem;
+       margin-bottom: 0;
+    }
+
+    .episode-nb{
+        margin-top: 5px;
+        font-family: 'exolight';
+    }
+
+    .cmt-rprted-action{
+        flex-direction: column;
+    }
+
+    .reported-comments{
+        font-size: 1.25rem;
+        margin-top: 3rem;
+    }
+
+    
 }
 
 
